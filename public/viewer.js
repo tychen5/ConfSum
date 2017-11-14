@@ -1,8 +1,10 @@
   var config = {
-    apiKey: "AIzaSyD_dyxO8d6siu2Lq1WcOtse9pXPeKK9HuA",
-    authDomain: "subtitle-5604e.firebaseapp.com",
-    databaseURL: "https://subtitle-5604e.firebaseio.com",
-    storageBucket: "subtitle-5604e.appspot.com",
+    apiKey: "AIzaSyA-hnI5aquIwwKkxkikcZjUQWrnlzeE3mc",
+    authDomain: "sdm-subtitle.firebaseapp.com",
+    databaseURL: "https://sdm-subtitle.firebaseio.com",
+    projectId: "sdm-subtitle",
+    storageBucket: "sdm-subtitle.appspot.com",
+    messagingSenderId: "45748735409"
   };
 var keywords=["皮卡丘","巴哈姆特","亞歷山大"];
 var keywordcontent=["皮卡丘是神奇寶貝系列登場的721種虛構角色（怪獸）中的一種。因為動畫和可愛的外表，所以成了所有寶可夢中最知名的角色。","原本是阿拉伯神話中的一種水中生物，是一條巨大的魚，居住在廣闊的海洋之中，在巴哈姆特之下是幽黯無盡的海洋。它支撐著一隻名為「Kujuta」的巨大公牛，Kujuta有著四千隻眼睛、耳朵、鼻子、嘴巴、舌頭和腳，而在每個器官之間有著五百年的旅程。Kujuta支撐了在他之上一粒紅寶石，在那之上站著一個天使，他支撐著七個大地。\n在現代，巴哈姆特常被人描述成一種懂得飛翔的巨龍。而會被比喻成龍，是因為體型巨大和新約聖經中所說利維坦（Leviathan）有一些相似性，也擁有翅膀，但《約伯記》中的插畫形象比較像東方古代的龍，有長條形的體型，與之不同的是沒有腳。","古希臘北部馬其頓國王。生於佩拉，到16歲為止一直由亞里士多德任其導師。30歲時，已經創立歷史上最大的帝國之一，其疆域從愛奧尼亞海一直延伸到印度河流域。他一生未嘗敗績，被認為是歷史上最成功的軍事統帥之一"]
