@@ -54,7 +54,7 @@ window.onload=function(){
     recognition.onend =onend;
     recognition.onerror= onerror;
     recognition.onresult = onresult;
-    readSubtitle(id)
+    
 }
 function buildElement(){
     id=document.getElementById("id");
@@ -119,7 +119,23 @@ function elementhide(){
 /*
         以下為語音辨識的各類事件            
                                      */
-                        
+function readSubtitle(id){//讀取所有字幕
+    var text;
+    var string;
+    firebase.database().ref('users/'+ id +"/Subtitle").on("child_added", function(snapshot) {
+        setTimeout(function(){
+            string=JSON.stringify(snapshot.val());
+            getTranslateResponse(string.substr(1,string.length-2));
+            text = document.createTextNode(string.substr(1,string.length-2)+"\n");
+            textarea.appendChild(text);
+        },15500);
+    }, function (errorObject) {
+        text = document.createTextNode("The read failed: " + errorObject.code);
+        textarea.appendChild(text);
+    });
+   
+}
+
 function onstart(){
     recognizing = true;
     subArray=new Array();
@@ -132,6 +148,7 @@ function onerror(event){
     alert("發生錯誤，錯誤類型::"+event.error);
 }
 function onresult(event){
+    readSubtitle(id);
     var text;
     var interim_transcript = '';
     var final_transcript = '';
@@ -173,22 +190,7 @@ function startrecord(event){
         },100);
     }
 }
-function readSubtitle(id){//讀取所有字幕
-    var text;
-    var string;
-    firebase.database().ref('users/'+ id +"/Subtitle").on("child_added", function(snapshot) {
-        setTimeout(function(){
-            string=JSON.stringify(snapshot.val());
-            getTranslateResponse(string.substr(1,string.length-2));
-            text = document.createTextNode(string.substr(1,string.length-2)+"\n");
-            textarea.appendChild(text);
-        },15500);
-    }, function (errorObject) {
-        text = document.createTextNode("The read failed: " + errorObject.code);
-        textarea.appendChild(text);
-    });
-   
-}
+
 function stoprecord(event){
     if(recognizing){
         clearInterval(interval);
@@ -223,10 +225,10 @@ function createAccount(){
 }
 function confirmNewAccount(){
     if(id.value==""){
-        alert("帳戶名稱不可為空直");
+        alert("帳戶名稱不可為空值");
     }else if(!checkRepeatAccount(id.value,idArray)){
         if(password.value=="")
-            alert("密碼不能為空直");
+            alert("密碼不能為空值");
         else if(password.value!=checkpassword.value)
             alert("確認密碼與密碼不一致")
         else{
