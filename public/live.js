@@ -8,6 +8,7 @@
   };
 //Login Page Element
 var id,password,checkpassword,login,setupNewAccount,confirmSetup;
+var textarea;
 var idArray,loginorNot=false;
 //Basic Setting Page Element
 var greet,mydate,title,lang,confirmSetting,settingControl,inputText,play,stop,timelabel;
@@ -53,6 +54,7 @@ window.onload=function(){
     recognition.onend =onend;
     recognition.onerror= onerror;
     recognition.onresult = onresult;
+    readSubtitle(id)
 }
 function buildElement(){
     id=document.getElementById("id");
@@ -70,6 +72,7 @@ function buildElement(){
     //readRecordProject=document.getElementById("readRecordProject");
     settingControl=document.getElementById("settingControl");
     inputText=document.getElementById("inputText");
+    textarea=document.getElementById("textarea");
     play=document.getElementById("play");
     stop=document.getElementById("stop");
     timelabel=document.getElementById("timelabel");
@@ -169,6 +172,22 @@ function startrecord(event){
             timelabel.innerHTML=changetoTime(false,timeCount*100);
         },100);
     }
+}
+function readSubtitle(id){//讀取所有字幕
+    var text;
+    var string;
+    firebase.database().ref('users/'+ id +"/Subtitle").on("child_added", function(snapshot) {
+        setTimeout(function(){
+            string=JSON.stringify(snapshot.val());
+            getTranslateResponse(string.substr(1,string.length-2));
+            text = document.createTextNode(string.substr(1,string.length-2)+"\n");
+            textarea.appendChild(text);
+        },15500);
+    }, function (errorObject) {
+        text = document.createTextNode("The read failed: " + errorObject.code);
+        textarea.appendChild(text);
+    });
+   
 }
 function stoprecord(event){
     if(recognizing){
@@ -286,7 +305,7 @@ function readProject(){
             }
         }
         if(getFileOrNot!=true)
-            alert("查無此專案");
+            alert("查無此會議記錄");
     }
 
 }
