@@ -8,7 +8,8 @@
 var id,password,checkpassword,login,setupNewAccount,confirmSetup;
 var idArray,loginorNot=false;
 //Basic Setting Page Element
-var greet,mydate,title,lang,confirmSetting,readRecordProject,settingControl,inputText,play,stop,timelabel;
+var greet,mydate,title,lang,confirmSetting,settingControl,inputText,play,stop,timelabel;
+//var readRecordProject;
 var display=true,titleArray;
 //Remodify Page Element
 var showSubtitle,saveSubtitle,plus,minus;
@@ -64,7 +65,7 @@ function buildElement(){
     title=document.getElementById("title");
     lang=document.getElementById("lang");
     confirmSetting=document.getElementById("confirmSetting");
-    readRecordProject=document.getElementById("readRecordProject");
+    //readRecordProject=document.getElementById("readRecordProject");
     settingControl=document.getElementById("settingControl");
     inputText=document.getElementById("inputText");
     play=document.getElementById("play");
@@ -88,7 +89,7 @@ function buildListener(){
     setupNewAccount.addEventListener("click",createAccount);
     confirmSetup.addEventListener("click",confirmNewAccount);
     confirmSetting.addEventListener("click",settingConfirm);
-    readRecordProject.addEventListener("click",readProject);
+    //readRecordProject.addEventListener("click",readProject);
     settingControl.addEventListener("click",controlSetting);
     play.addEventListener("click",startrecord);
     stop.addEventListener("click",stoprecord);
@@ -100,6 +101,9 @@ function buildListener(){
 }
 function elementhide(){
     $("#record").hide();
+    $("#recordchart").hide();
+    $("#textarea").hide();
+    $("#textoutbound").hide();
     $("#recheckPassword").hide();
     $("#confirmSetup").hide();
     $("#saveSubtitle").hide();
@@ -183,7 +187,7 @@ function getAccountPermission(){
          else{
              final_id=id.value;
              final_password=password.value;
-             greet.innerHTML="哈囉，"+final_id;
+             greet.innerHTML="Hello，"+final_id;
              loginorNot=true;
              $("#BasicSetting").trigger( "click" );
          }
@@ -237,6 +241,7 @@ function writeUserData(id,password) {
     });
 }
 function settingConfirm(){
+    controlSetting();
     if(loginorNot!=true){
         alert("尚未登入請重新登入")
     }else if(checkTitle()){
@@ -250,6 +255,9 @@ function settingConfirm(){
         downloadName.value=final_id+"_"+final_title+".srt";
         recognition.lang=lang.value;
         $("#record").show("slow");
+        $("#recordchat").show("slow");
+        $("#textarea").show("slow");
+        $("#textoutbound").show("slow");
         getUserTitle(final_id);
         firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title).set(
         {
