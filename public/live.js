@@ -1,8 +1,10 @@
   var config = {
-    apiKey: "AIzaSyD_dyxO8d6siu2Lq1WcOtse9pXPeKK9HuA",
-    authDomain: "subtitle-5604e.firebaseapp.com",
-    databaseURL: "https://subtitle-5604e.firebaseio.com",
-    storageBucket: "subtitle-5604e.appspot.com",
+    apiKey: "AIzaSyA-hnI5aquIwwKkxkikcZjUQWrnlzeE3mc",
+    authDomain: "sdm-subtitle.firebaseapp.com",
+    databaseURL: "https://sdm-subtitle.firebaseio.com",
+    projectId: "sdm-subtitle",
+    storageBucket: "sdm-subtitle.appspot.com",
+    messagingSenderId: "45748735409"
   };
 //Login Page Element
 var id,password,checkpassword,login,setupNewAccount,confirmSetup;
