@@ -12,6 +12,7 @@ var textarea;
 var idArray,loginorNot=false;
 //Basic Setting Page Element
 var greet,mydate,title,lang,confirmSetting,settingControl,inputText,play,stop,timelabel;
+var sessionNumber,meetinggoal,texttitle;
 //var readRecordProject;
 var display=true,titleArray;
 //Remodify Page Element
@@ -64,9 +65,12 @@ function buildElement(){
     setupNewAccount=document.getElementById("setupNewAccount");
     confirmSetup=document.getElementById("confirmSetup");
     
+    texttitle=document.getElementById("texttitle");
     greet=document.getElementById("greet");
     mydate=document.getElementById("mydate");
     title=document.getElementById("titleInput");
+    sessionNumber=document.getElementById("roomnumberInput");
+    meetinggoal=document.getElementById("meetinggoalInput");
     lang=document.getElementById("lang");
     confirmSetting=document.getElementById("confirmSetting");
     //readRecordProject=document.getElementById("readRecordProject");
@@ -262,16 +266,15 @@ function writeUserData(id,password) {
     });
 }
 function settingConfirm(){
-    controlSetting();
     if(loginorNot!=true){
         alert("尚未登入請重新登入")
-    }else if(checkTitle()){
+    }else if(checkTitle() && checkGoal() && checkSession()){
         var d=new Date();
         var year,month,day;
         year=d.getFullYear();
         month=d.getMonth()+1;
         day=d.getDate();
-        var date=""+year+month+day;
+        var date=""+year+"/"+month+"/"+day;
         final_title=title.value;
         downloadName.value=final_id+"_"+final_title+".srt";
         recognition.lang=lang.value;
@@ -279,6 +282,9 @@ function settingConfirm(){
         $("#recordchat").show("slow");
         $("#textarea").show("slow");
         $("#textoutbound").show("slow");
+        
+        controlSetting();
+        texttitle.textContent=title.value+"_會議記錄_"+date;
         getUserTitle(final_id);
         firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title).set(
         {
@@ -538,12 +544,24 @@ function paddingLeft(str,lengh){
 }
 function checkTitle(){
     if(title.value==""){
-        alert("標題不可為空直");
+        alert("標題不可為空值");
         return false;
     }
     return true;
 }
-
+function checkSession(){
+    if(sessionNumber.value==""){
+        alert("會議室編號不可為空值");
+        return false;
+    }
+    return true;
+}function checkGoal(){
+    if(meetinggoal.value==""){
+        alert("會議目標不可為空值");
+        return false;
+    }
+    return true;
+}
 
 
 
