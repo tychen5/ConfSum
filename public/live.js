@@ -66,7 +66,7 @@ function buildElement(){
     
     greet=document.getElementById("greet");
     mydate=document.getElementById("mydate");
-    title=document.getElementById("title");
+    title=document.getElementById("titleInput");
     lang=document.getElementById("lang");
     confirmSetting=document.getElementById("confirmSetting");
     //readRecordProject=document.getElementById("readRecordProject");
