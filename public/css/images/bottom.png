@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Valet &mdash; A free HTML5 Template by FREEHTML5.CO</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FREEHTML5.CO" />
+
+  	<!-- 
+	//////////////////////////////////////////////////////
+
+	FREE HTML5 TEMPLATE 
+	DESIGNED & DEVELOPED by FREEHTML5.CO
+	
+	Website: 		http://freehtml5.co/
+	Email: 			info@freehtml5.co
+	Twitter: 		http://twitter.com/fh5co
+	Facebook: 	https://www.facebook.com/fh5co
+
+	//////////////////////////////////////////////////////
+
+  	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  	<link rel="shortcut icon" href="favicon.ico">
+
+  	<!-- Google Webfont -->
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+	<!-- Themify Icons -->
+	<link rel="stylesheet" href="css/themify-icons.css">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<!-- Superfish -->
+	<link rel="stylesheet" href="css/superfish.css">
+	<!-- Easy Responsive Tabs -->
+	<link rel="stylesheet" href="css/easy-responsive-tabs.css">
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Theme Style -->
+	<link rel="stylesheet" href="css/style.css">
+    <!-- 以下63 64不知道是否真的有用 -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+    
+    <!--<script src="myJs.js"></script>-->
+    
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+		<!--
+		<div id="fh5co-hero" style="background-image: url(images/slide_2.jpg);">
+			<div class="overlay"></div>
+			<a href="#fh5co-main" class="smoothscroll fh5co-arrow to-animate hero-animate-4"><i class="ti-angle-down"></i></a>
+			<!-- End fh5co-arrow -->
+        <!--
+			<div class="container">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="fh5co-hero-wrap">
+						<div class="fh5co-hero-intro">
+							<h1 class="to-animate hero-animate-1">Subtitle everything</h1>
+							<h2 class="to-animate hero-animate-2">Caption for Live, Capture your life!<a href="http://freehtml5.co" target="_blank"></a></h2>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+        -->
+		<div id="fh5co-main">
+	
+			<div class="container">
+
+				<!-- 
+				///////////////////////////////////
+				Features
+				///////////////////////////////////
+				-->
+				
+
+				<div class="fh5co-spacer fh5co-spacer-md"></div>
+                <!-- 只為了預留空間 -->
+				<!-- End Spacer -->
+
+				<!-- 
+				///////////////////////////////////
+				Portfolio 
+				///////////////////////////////////
+				-->
+
+				
+
+			</div>
+			<!-- END container -->
+				
+			<div class="fh5co-spacer fh5co-spacer-md"></div>
+
+			<!-- Responsive Tabs -->
+			<div class="container">
+				
+				<!-- 
+				///////////////////////////////////
+				Responsive Tabs
+				///////////////////////////////////
+				-->
+
+
+				<div class="row">
+					<div class="col-md-12 animate-box">
+						
+						<div class="fh5co-spacer fh5co-spacer-sm"></div>
+
+						<div id="fh5co-tab-feature-center" class="fh5co-tab text-center">
+							<ul class="resp-tabs-list hor_1">
+                                <li><i class="fh5co-tab-menu-icon ti-ruler-pencil"></i>Login</li>
+								<li id="BasicSetting"><i class="fh5co-tab-menu-icon ti-ruler-pencil"></i>Basic Setting</li>
+								<li id="Remodify"><i  class="fh5co-tab-menu-icon ti-paint-bucket"></i>Remodify </li>
+                                <li id="downloadlink"><i  class="fh5co-tab-menu-icon glyphicon glyphicon-save"></i>Download<li>
+							</ul>
+							<div class="resp-tabs-container hor_1">
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+											<h1 class="h3">登入</h1>
+										</div>
+                                        <div class="col-md-6" >
+											<p>帳號:
+                                                <input placeholder="ID" id="id" type="text" class="form-control input-lg">
+                                            </p>
+                                            <p>密碼:
+                                                <input placeholder="password" id="password" type="password" class="form-control input-lg">
+                                            </p>
+                                            <p id="recheckPassword">確認密碼:
+                                                <input placeholder="password" id="checkpassword" type="password" class="form-control input-lg">
+                                            </p>
+                                            <input type="button" id="login" class="btn btn-primary btn-lg " value="登入">
+                                            <input type="button" id="setupNewAccount" class="btn btn-primary btn-lg " value="建立新帳號">
+                                            <input type="button" id="confirmSetup" class="btn btn-primary btn-lg " value="確認">
+                                            <hr>
+										</div>
+                                    </div>
+                                </div>
+								<div>
+									<div class="row">
+										<div class="col-md-12">
+											<h1 class="h3" id="greet">Hello，</h1>
+                                            <p id="mydate">今日日期:
+                                            </p>
+										</div>
+										<div id="setting" class="col-md-6">
+                                            <div>
+                                                <p>會議名稱: 
+                                                    <input placeholder="Meeting Name" id="title" type="text" class="form-control input-lg">
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p>會議室編號: 
+                                                    <input placeholder="Room Number" id="Roomnumber" type="text" class="form-control input-lg">
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p>會議目標: 
+                                                    <input placeholder="Meeting Goals" id="Meetinggola" type="text" class="form-control input-lg">
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p>請選擇語言:
+                                                <select id="lang" class="form-control input-lg" id="lang">
+                                                    <option value="cmn-Hant-TW" selected>中文</option>
+									                <option value="en-US">英文</option>
+                                                    <option value="ja">日文</option>
+									            </select>
+                                            </p>
+                                            </div>
+                                            <input type="button" id="confirmSetting" class="btn btn-primary btn-lg " value="建立會議">
+                                            
+                                            
+                                        </div>
+                                        <div class="col-md-12" align="center">
+                                            <button id="settingControl" class="btn-radius glyphicon glyphicon-chevron-up"></button>
+                                            <hr>
+                                        </div>
+                                        <div id="record" class="col-md-6">
+                                            <div>
+                                                <p>開始錄音: 
+                                                    <input placeholder="字幕顯示區" id="inputText" type="text" class="form-control input-lg">
+                                                </p>
+								                <button type="button" class="btn btn-info btn-sm" id="play">開始</button>
+                                                <button type="button" class="btn btn-outline btn-sm" id="stop">停止</button>
+                                                <label id="timelabel" class="btn">00:00:00.000</label>
+                                                <!--
+                                                <input type="button" id="readRecordProject" class="btn btn-primary btn-lg " value="存取會議記錄">
+                                                -->
+                                                
+                                            </div>
+										</div>
+                                        <div id="recordchat" class="col-md-6">
+                                                <div class="subtitle">
+                                                    <label id="realtimeSubtitle"></label>
+                                                </div>
+                                                <div class="subtitlearea" id="textoutbound">
+                                                    <h3 style="fontColor:black;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;會議記錄</h3>
+                                                    <textarea id="textarea" readonly></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 ">
+                                                <h3 id="keywordtitle"></h3>
+                                                <label id="keyword"></label>
+                                            </div>
+                                        
+                                        
+									</div>
+								</div>
+								<div>
+									<div class="row">
+										<div class="col-md-12">
+											<h2 class="h3">字幕訂正</h2>
+										</div>
+										<div class="col-md-6">
+                                            <div>
+                                                <button id="showSubtitle" class="btn btn-primary">讀取字幕</button>
+                                                <button id="saveSubtitle" class="btn btn-outline">儲存字幕</button>
+                                                <button id="plusTime" class="glyphicon glyphicon-plus btn-radius"></button>
+                                                <button id="minusTime" class="glyphicon glyphicon-minus btn-radius"></button>
+                                            </div>
+                                                <p id="content"></p>
+                                                <div id="div"></div>
+										</div>
+										<div class="col-md-6">
+											
+										</div>
+									</div>
+								</div>
+                                <div id="downloadpage">
+                                    檔案名稱:<input id="downloadName" type="text" value="test.srt" style="border: none" readonly><br><br>
+                                    <textarea id="downloadText" style="width:100%;height:300px" readonly></textarea><br>
+                                </div>
+							</div>
+						</div>
+					</div>
+
+					<hr class="fh5co-spacer fh5co-spacer-sm">
+
+					
+
+					
+					
+					<!-- END Tabs -->
+				</div>
+
+				<!-- END .row -->
+
+				<div class="fh5co-spacer fh5co-spacer-md"></div>
+				
+
+				
+
+				<div class="fh5co-spacer fh5co-spacer-md"></div>
+
+				
+
+				
+			<div class="fh5co-spacer fh5co-spacer-md"></div>
+
+			
+
+
+
+			</div>
+			<!-- END container -->
+
+		
+		</div>
+		<!-- END fhtco-main -->
+
+        <!--
+		<footer role="contentinfo" id="fh5co-footer">
+			<a href="#" class="fh5co-arrow fh5co-gotop footer-box"><i class="ti-angle-up"></i></a>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-6 footer-box">
+						<h3 class="fh5co-footer-heading">Company</h3>
+						<ul class="fh5co-footer-links">
+							<li><a href="about.html">About</a></li>
+							<li><a href="#">Services</a></li>
+							<li><a href="index.html">Our Products</a></li>
+							<li><a href="#">Our Culture</a></li>
+							<li><a href="#">Team</a></li>
+						</ul>
+
+					</div>
+					<div class="col-md-4 col-sm-6 footer-box">
+						<h3 class="fh5co-footer-heading"></h3>
+						<a href="index.html"><img src="images/logo2.png" alt="Cooba"></a>
+					</div>
+					<div class="col-md-4 col-sm-12 footer-box">
+						<h3 class="fh5co-footer-heading">Get in touch</h3>
+						<ul class="fh5co-social-icons">
+							
+							<li><a href="ab"><i class="ti-google"></i></a></li>
+							<li><a href="#"><i class="ti-twitter-alt"></i></a></li>
+							<li><a href="#"><i class="ti-facebook"></i></a></li>	
+							<li><a href="#"><i class="ti-instagram"></i></a></li>
+							<li><a href="#"><i class="ti-dribbble"></i></a></li>
+						</ul>
+					</div>
+					<div class="col-md-12 footer-box text-center">
+						<div class="fh5co-copyright">
+						<p>&copy; 2016 COOBA All Rights Reserved. <br></p>
+						</div>
+					</div>
+				</div>
+				<!-- END row -->
+        <!--
+				<div class="fh5co-spacer fh5co-spacer-md"></div>
+			</div>
+		</footer>
+        
+			
+		<!-- jQuery -->
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<!-- jQuery Easing -->
+		<script src="js/jquery.easing.1.3.js"></script>
+		<!-- Bootstrap -->
+		<script src="js/bootstrap.js"></script>
+		<!-- Owl carousel -->
+		<script src="js/owl.carousel.min.js"></script>
+		<!-- Magnific Popup -->
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<!-- Superfish -->
+		<script src="js/hoverIntent.js"></script>
+		<script src="js/superfish.js"></script>
+		<!-- Easy Responsive Tabs -->
+		<script src="js/easyResponsiveTabs.js"></script>
+		<!-- FastClick for Mobile/Tablets -->
+		<script src="js/fastclick.js"></script>
+		<!-- Parallax -->
+		<script src="js/jquery.parallax-scroll.min.js"></script>
+		<!-- Waypoints -->
+		<script src="js/jquery.waypoints.min.js"></script>
+		<!-- Main JS -->
+		<script src="js/main.js"></script>
+        <script src="live.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+	</body>
+</html>
