@@ -35,9 +35,9 @@ var g_signup,g_signin;
 window.onload=function(){
     //window.location.assign('loginPage.html');
     buildElement();
-    ms = new Date().getTime()
+    ms = new Date().getTime();
     firebase.initializeApp(config);
-    database = firebase.database().ref()
+    database = firebase.database().ref();
     var provider = new firebase.auth.GoogleAuthProvider(); 
     firebase.auth().signInWithPopup(provider).then(function(result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
