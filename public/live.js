@@ -21,21 +21,22 @@ var showSubtitle,saveSubtitle,plus,minus;
 var downloadName,downloadText;
 //Content Bar item
 var BasicSetting,Remodify;
-
+var roomNumber="test";
 //recognizer Object
 var recognition, recognizing = false;
 var subArray,timeArray;
 var interval,timeCount=0,firstword=true,startTime,endTime;
-var subRef,wordNum;
-
+var subRef,wordNum,allsubref;
+var database,ms;
 //確認後的各項變數
 var final_id="",final_password="",final_title="";
 
 window.onload=function(){
     //window.location.assign('loginPage.html');
     buildElement();
-    
+    ms = new Date().getTime()
     firebase.initializeApp(config);
+    database = firebase.database().ref()
     var provider = new firebase.auth.GoogleAuthProvider(); 
     firebase.auth().signInWithPopup(provider).then(function(result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
@@ -55,13 +56,12 @@ window.onload=function(){
       // ...
     });
     buildListener();
-    
     showdate();
     getAccountInfo();
     elementhide();
     
     if (!('webkitSpeechRecognition' in window)) {
-        alert("此瀏覽器並不支援語音辨識API");
+        alert("此瀏覽器不支援語音辨識，請更換瀏覽器！(Chrome 25版以上才支援語音辨識)");
     }
     else {
         recognition = new webkitSpeechRecognition(); 
@@ -73,7 +73,19 @@ window.onload=function(){
     recognition.onend =onend;
     recognition.onerror= onerror;
     recognition.onresult = onresult;
-    readSubtitle(id)
+    
+    
+    /*
+    var text;
+    var string;
+    firebase.database().ref('users/'+id.value+'/Subtitle').on("child_added", function(snapshot) {
+        
+        string=JSON.stringify(snapshot.val());        
+        text = document.createTextNode(string.substr(1,string.length-2)+"\n");
+        textarea.appendChild(text);
+        console.log(textarea.value);
+    });
+      */  
 }
 function buildElement(){
     id=document.getElementById("id");
@@ -87,7 +99,7 @@ function buildElement(){
     greet=document.getElementById("greet");
     mydate=document.getElementById("mydate");
     title=document.getElementById("titleInput");
-    sessionNumber=document.getElementById("roomnumberInput");
+    sessionNumber=document.getElementById("roomnumberInput");    
     meetinggoal=document.getElementById("meetinggoalInput");
     lang=document.getElementById("lang");
     confirmSetting=document.getElementById("confirmSetting");
@@ -164,7 +176,8 @@ function onresult(event){
             updateTime(final_id,final_title,timeArray);
             
             final_transcript = event.results[i][0].transcript; 
-            subArray.push(final_transcript);
+            //textarea.value=final_transcript;
+            subArray.push(final_transcript);            
             updateRealtimeSubtitle(final_id,final_title,final_transcript);
             updateSubtitle(final_id,final_title,subArray);
             firstword=true;
@@ -178,6 +191,7 @@ function onresult(event){
             }
             interim_transcript = event.results[i][0].transcript;
             inputText.value=interim_transcript;
+            
             updateRealtimeSubtitle(final_id,final_title,interim_transcript);
         }
     }
@@ -193,24 +207,31 @@ function startrecord(event){
             timeCount++;
             timelabel.innerHTML=changetoTime(false,timeCount*100);
         },100);
+        readSubtitle(final_id);
     }
 }
-function readSubtitle(id){//讀取所有字幕
+function readSubtitle(id_string){//讀取所有字幕
     var text;
     var string;
-    firebase.database().ref('users/'+ id +"/Subtitle").on("child_added", function(snapshot) {
-        setTimeout(function(){
-            string=JSON.stringify(snapshot.val());
-            getTranslateResponse(string.substr(1,string.length-2));
-            text = document.createTextNode(string.substr(1,string.length-2)+"\n");
-            textarea.appendChild(text);
-        },15500);
-    }, function (errorObject) {
-        text = document.createTextNode("The read failed: " + errorObject.code);
-        textarea.appendChild(text);
+    allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
+    allsubref.limitToLast(1).on('value', function(snapshot) {
+      for(var i in snapshot.val()){
+          
+          string=JSON.stringify(snapshot.val()[i]);        
+          text = document.createTextNode(string.substr(1,string.length-2)+"\n");
+          textarea.appendChild(text);
+                    
+          
+        }
+        console.log(textarea.value);
     });
-   
+    
 }
+/*, function (errorObject) {
+        text = document.createTextNode("The read failed: " + errorObject.code);
+        textarea.append(text);
+    }*/
+
 function stoprecord(event){
     if(recognizing){
         clearInterval(interval);
@@ -287,6 +308,8 @@ function settingConfirm(){
     if(loginorNot!=true){
         alert("尚未登入請重新登入")
     }else if(checkTitle() && checkGoal() && checkSession()){
+        roomNumber=sessionNumber.value;
+        console.log(roomNumber);
         var d=new Date();
         var year,month,day;
         year=d.getFullYear();
@@ -312,6 +335,7 @@ function settingConfirm(){
             "Subtitle":{0:""}
         });
     }
+    
 }
 function readProject(){
     var getFileOrNot=false;
@@ -580,6 +604,23 @@ function checkSession(){
     }
     return true;
 }
-
+/*
+function getTranslateResponse(context){
+    var newScript = document.createElement('script');
+    newScript.type = 'text/javascript';
+    var sourceText = escape(context);
+    // WARNING: Your API key will be visible in the page source.
+    // To prevent misuse, restrict your key to designated domains or use a
+    // proxy to hide your key.
+    var source = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyB7RbkCari0Ufg_vsuGUba1iMg6pBRC4lc&source=zh&target='+translateLang.value+'&callback=translateText&q=' + sourceText;
+    newScript.src = source;
+    document.getElementsByTagName('head')[0].appendChild(newScript);
+}
+function translateText(response) {
+    var text=document.createTextNode(response.data.translations[0].translatedText);
+    document.getElementById("translation").appendChild(text);
+    document.getElementById("translation").appendChild(document.createElement("br"));
+}
+*/
 
 
