@@ -31,7 +31,7 @@ var subRef,wordNum,allsubref;
 var database,ms;
 //確認後的各項變數
 var final_id="",final_password="",final_title="";
-
+var g_signup,g_signin;
 window.onload=function(){
     //window.location.assign('loginPage.html');
     buildElement();
@@ -119,7 +119,8 @@ function buildElement(){
     
     downloadName=document.getElementById("downloadName");
     downloadText=document.getElementById("downloadText");
-    
+    g_signup=document.getElementById("g_signup");
+    g_signin=document.getElementById("g_signin");
     BasicSetting=document.getElementById("BasicSetting");
     Remodify=document.getElementById("Remodify");
     downloadlink=document.getElementById("downloadlink");
@@ -139,6 +140,8 @@ function buildListener(){
     plus.addEventListener("click",plusTime);
     minus.addEventListener("click",minusTime);
     Remodify.addEventListener("click",recover);
+    g_signin.addEventListener("click",signInWithGoogle);
+    g_signup.addEventListener("click",signUpWithGoogle);
 }
 function elementhide(){
     $("#record").hide();
@@ -155,7 +158,43 @@ function elementhide(){
 /*
         以下為語音辨識的各類事件            
                                      */
-                        
+function signUpWithGoogle(){
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+  // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+  // The signed-in user info.
+        var user = result.user;
+  // ...
+    }).catch(function(error) {
+  // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  // The email of the user's account used.
+    var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+  // ...
+});
+}   
+function signInWithGoogle(){
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+  // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+  // The signed-in user info.
+        var user = result.user;
+  // ...
+    }).catch(function(error) {
+  // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  // The email of the user's account used.
+    var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+  // ...
+}
 function onstart(){
     recognizing = true;
     subArray=new Array();
