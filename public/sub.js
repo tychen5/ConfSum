@@ -187,7 +187,8 @@ function getGoogleAuthentication(){
       var token = result.credential.accessToken;
       // The signed-in user info.
       var user = result.user;
-        window.alert(user);
+        window.alert(user.name);
+        window.location.assign("Setmeeting.html");
       // ...
     }).catch(function(error) {
       // Handle Errors here.

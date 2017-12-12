@@ -17,6 +17,7 @@ var sessionNumber,meetinggoal,texttitle;
 var display=true,titleArray;
 //Remodify Page Element
 var showSubtitle,saveSubtitle,plus,minus;
+var set_meeting_btn;
 //Download Page Element
 var downloadName,downloadText;
 //Content Bar item
@@ -94,7 +95,7 @@ function buildElement(){
     login=document.getElementById("login");
     setupNewAccount=document.getElementById("setupNewAccount");
     confirmSetup=document.getElementById("confirmSetup");
-    
+    set_meeting_btn=document.getElementById("set_meeting_btn");
     texttitle=document.getElementById("texttitle");
     greet=document.getElementById("greet");
     mydate=document.getElementById("mydate");
@@ -130,6 +131,7 @@ function buildListener(){
     confirmSetting.addEventListener("click",settingConfirm);
     //readRecordProject.addEventListener("click",readProject);
     settingControl.addEventListener("click",controlSetting);
+    set_meeting_btn.addElement("click",settingConfirm);
     play.addEventListener("click",startrecord);
     stop.addEventListener("click",stoprecord);
     showSubtitle.addEventListener("click",showsub);
@@ -207,6 +209,7 @@ function startrecord(event){
             timeCount++;
             timelabel.innerHTML=changetoTime(false,timeCount*100);
         },100);
+        
         readSubtitle(final_id);
     }
 }
@@ -215,11 +218,12 @@ function readSubtitle(id_string){//讀取所有字幕
     var string;
     allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
     allsubref.limitToLast(1).on('value', function(snapshot) {
+        
       for(var i in snapshot.val()){
           
           string=JSON.stringify(snapshot.val()[i]);        
           text = document.createTextNode(string.substr(1,string.length-2)+"\n");
-          textarea.appendChild(text);
+          textarea.append(text);
                     
           
         }
@@ -234,10 +238,12 @@ function readSubtitle(id_string){//讀取所有字幕
 
 function stoprecord(event){
     if(recognizing){
+        /*
         clearInterval(interval);
         updateTimecount(final_id,final_title,timeCount*100);
         timeCount=0;
         timelabel.innerHTML="00:00:00,000";
+        */
         recognition.stop();
     }
 }
@@ -308,6 +314,7 @@ function settingConfirm(){
     if(loginorNot!=true){
         alert("尚未登入請重新登入")
     }else if(checkTitle() && checkGoal() && checkSession()){
+        window.location.assign("index_2.html");
         roomNumber=sessionNumber.value;
         console.log(roomNumber);
         var d=new Date();
