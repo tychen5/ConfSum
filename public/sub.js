@@ -97,7 +97,7 @@ function buildElement(){
 function buildListener(){
     g_signin.addEventListener("click",getGoogleAuthentication);
     g_signup.addEventListener("click",getGoogleAuthentication);
-    login.addEventListener("click",getAccountPermission);
+    //login.addEventListener("click",getAccountPermission);
     setupNewAccount.addEventListener("click",createAccount);
     confirmSetup.addEventListener("click",confirmNewAccount);
     confirmSetting.addEventListener("click",settingConfirm);
@@ -182,24 +182,26 @@ function startrecord(event){
 }
 function getGoogleAuthentication(){
     var provider = new firebase.auth.GoogleAuthProvider(); 
-    firebase.auth().signInWithPopup(provider).then(function(result) {
+    firebase.auth().signInWithRedirect(provider);
+    firebase.auth().getRedirectResult().then(function(result) {
+    if (result.credential) {
     // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-        window.alert(user.name);
+        var token = result.credential.accessToken;
         window.location.assign("Setmeeting.html");
-      // ...
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-    });
+    // ...
+    }
+  // The signed-in user info.
+        var user = result.user;
+}   ).catch(function(error) {
+    // Handle Errors here.
+        var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+        // ...
+});
 }
 function readSubtitle(id){//讀取所有字幕
     var text;
