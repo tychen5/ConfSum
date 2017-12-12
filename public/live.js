@@ -132,7 +132,7 @@ function buildListener(){
     confirmSetting.addEventListener("click",settingConfirm);
     readRecordProject.addEventListener("click",readProject);
     settingControl.addEventListener("click",controlSetting);
-    set_meeting_btn.addEventListener("click",settingConfirm);
+    //set_meeting_btn.addEventListener("click",settingConfirm);
     play.addEventListener("click",startrecord);
     stop.addEventListener("click",stoprecord);
     showSubtitle.addEventListener("click",showsub);
