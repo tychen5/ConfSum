@@ -194,7 +194,7 @@ function signInWithGoogle(){
   // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
   // ...
-}
+});
 function onstart(){
     recognizing = true;
     subArray=new Array();
