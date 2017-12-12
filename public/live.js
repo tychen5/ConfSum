@@ -32,6 +32,7 @@ var subRef,wordNum;
 var final_id="",final_password="",final_title="";
 
 window.onload=function(){
+    window.location.assign('loginPage.html');
     buildElement();
     
     firebase.initializeApp(config);
