@@ -1,0 +1,153 @@
+body{
+	margin: 0 auto;
+	background-color: #E5E5E5;
+}
+
+/* below css for navbar */
+
+ul {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+a {
+    display: block;
+    color: white;
+    font-size: 18px;
+    padding: 14px 16px;
+    text-decoration: none;
+    
+}
+
+a:visited{ 
+	color: white;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: none;
+	color:#E5E5E5;
+}
+
+
+
+
+.container{
+	width: 490px;
+	height: 500px;
+	background-color: #A2A9AF;
+	border-radius: 5px;
+	text-align: center;
+	margin:0 auto;
+	margin-top:220px;
+}
+
+/* below css for form */
+
+
+form{
+	margin: 30px 50px auto 50px;
+
+}
+
+input{
+	margin-bottom:20px;
+	background-color: #FFFFFF;	
+	border-radius: 12px;
+
+}
+
+#FirstName {
+	width: 48%;
+	float:left;
+	padding: 6px 12px;
+}
+
+#LastName {
+	width: 48%;
+	float:right;
+	padding: 6px 12px;
+
+}
+
+.tabcontent {
+    display: none;
+ }
+
+/* below css for button */
+
+button{
+	width:30%;
+	height:36px;
+	background: #4C5870;
+	border-radius: 12px;
+	border-style: none;
+	font-size:18px;
+
+}
+
+.button-holder{
+	text-align: center;
+}
+
+.tablinks{
+	background: #A2A9AF;
+	color: #fff;
+	margin-top: 30px;
+
+}
+
+.SignUpTab{
+	margin-right: 30px;
+}
+
+.SignInTab{
+	margin-left: 30px;
+}
+
+.active{
+    background-color: #4C5870;
+}
+
+.SignUpBtn-google{
+	width:100%;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.google-button_icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0px 25px 0px 0px;
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+}
+
+.btn-text{
+	color: #fff;
+	margin-top: 15px;
+}
+
+/* below css for text */
+
+.SignIn-headline{
+	font-size:28px;
+	color: #fff;
+	margin-bottom: 20px;
+}
+
+.SignUp-headline{
+	font-size:28px;
+	color: #fff;
+	margin-bottom: 20px;
+}
+
+.or{
+	font-size:28px;
+	color: #fff;
+	margin-bottom: 20px;
+}
+

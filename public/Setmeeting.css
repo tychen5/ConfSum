@@ -1,0 +1,134 @@
+body{
+	margin: 0 auto;
+	background-color: #E5E5E5;
+}
+
+/* below css for navbar */
+
+ul {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+a {
+    display: block;
+    color: white;
+    font-size: 18px;
+    padding: 14px 16px;
+    text-decoration: none;
+    
+}
+
+a:visited{ 
+	color: white;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: none;
+	color:#E5E5E5;
+}
+
+
+/* below css for tab button */
+
+
+.tablinks{
+	width: 125px;
+	border-radius: 20px;
+	background: #E5E5E5;
+	color: #4C5870;
+	margin: 50px 0px 0px 50px;
+
+}
+
+.room-number{
+	width: 180px;
+	border-radius: 12px;
+	border-style: none;
+	display:inline;
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+.search{
+	float:right;
+}
+
+.Enter-btn{
+	width: 75px
+}
+
+/* below css for form */
+
+
+.container{
+	width: 750px;
+	height: 580px;
+	background-color: #A2A9AF;
+	border-radius: 5px;
+	text-align: center;
+	margin:0 auto;
+	margin-top:150px;
+}
+
+
+form{
+	margin: 30px 50px auto 50px;
+
+}
+
+input{
+	margin-bottom:35px;
+	background-color: #FFFFFF;	
+	border-radius: 12px;
+}
+
+.discription {
+    height:200px;
+ }
+
+
+.tabcontent {
+    display: none;
+ }
+
+/* below css for button */
+
+button{
+	width:30%;
+	height:36px;
+	background: #4C5870;
+	border-radius: 12px;
+	border-style: none;
+	font-size:18px;
+
+}
+
+.button-holder{
+	text-align: center;
+}
+
+.active{
+    background-color: #4C5870;
+    color: #fff;
+}
+
+
+
+/* below css for text */
+
+.btn-text{
+	color: #fff;
+	margin-top: 15px;
+}
+
+.Setmeeting-headline{
+	font-size:28px;
+	color: #fff;
+	margin-bottom: 40px;
+}
+
+

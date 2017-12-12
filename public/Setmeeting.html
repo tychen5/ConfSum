@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+	    <!-- Custom styles for this template -->
+    <link href="Setmeeting.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+
+
+
+</head>
+
+	
+
+
+ <body>
+
+
+    <ul>
+		<li><a class="active" href="#">SUBTITLER</a></li>
+	</ul>
+
+	<div class="tab col-md-6">
+		  <button class="tablinks meeting-tab" onclick="changeTab(event, 'meeting')" id="defaultOpen">Meeting</button>
+		  <button class="tablinks document-tab" onclick="changeTab(event, 'document')">Document</button>
+    </div>
+    <div class="col-md-6">
+    	<form class="search">
+		  <input type="text" class="form-control room-number" placeholder="Enter room number">
+		  <button type="submit" class="btn-text Enter-btn">ENTER</button>
+		</form>
+	</div>
+
+    <!-- Meeting form-->
+
+	<div id="meeting" class="tabcontent">
+		<div class="container">
+				<form>
+					<div>
+						<h2 class="Setmeeting-headline">SET UP A MEETING</h2>
+					</div>
+
+					<div class="input-area">
+						<input type="text" class="form-control" placeholder="Meeting name">
+						<input type="text" class="form-control" placeholder="Room number">
+						<input type="text" class="form-control discription" placeholder="Description" size="100">
+					</div>
+					
+
+					<div class="button-holder">
+						<button type="submit" class="btn-text">SET UP</button>
+					</div>
+				</form>
+		</div>
+	</div>
+
+		<div id="document" class="tabcontent"></div>
+	
+
+	<!-- Meeting form ends-->
+
+	<script>    
+	    function changeTab(evt, page) {
+	        var i, tabcontent, tablinks;
+
+	        tabcontent = document.getElementsByClassName("tabcontent");
+	        for (i = 0; i < tabcontent.length; i++) {
+	            tabcontent[i].style.display = "none";
+	        }
+
+	        tablinks = document.getElementsByClassName("tablinks");
+	        for (i = 0; i < tablinks.length; i++) {
+	            tablinks[i].className = tablinks[i].className.replace(" active", "");
+	        }
+
+	        document.getElementById(page).style.display = "block";
+	        evt.currentTarget.className += " active";
+	    }
+
+	    document.getElementById("defaultOpen").click();
+	</script>
+
+</body>
+</html>
