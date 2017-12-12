@@ -31,20 +31,20 @@ var subRef,wordNum,allsubref;
 var database,ms;
 //確認後的各項變數
 var final_id="",final_password="",final_title="";
-var g_signup,g_signin;
+
 window.onload=function(){
     //window.location.assign('loginPage.html');
     buildElement();
-    ms = new Date().getTime();
+    ms = new Date().getTime()
     firebase.initializeApp(config);
-    database = firebase.database().ref();
+    database = firebase.database().ref()
     var provider = new firebase.auth.GoogleAuthProvider(); 
     firebase.auth().signInWithPopup(provider).then(function(result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
       var token = result.credential.accessToken;
       // The signed-in user info.
       var user = result.user;
-       
+        window.alert(user);
       // ...
     }).catch(function(error) {
       // Handle Errors here.
@@ -119,8 +119,7 @@ function buildElement(){
     
     downloadName=document.getElementById("downloadName");
     downloadText=document.getElementById("downloadText");
-    g_signup=document.getElementById("g_signup");
-    g_signin=document.getElementById("g_signin");
+    
     BasicSetting=document.getElementById("BasicSetting");
     Remodify=document.getElementById("Remodify");
     downloadlink=document.getElementById("downloadlink");
@@ -130,9 +129,8 @@ function buildListener(){
     setupNewAccount.addEventListener("click",createAccount);
     confirmSetup.addEventListener("click",confirmNewAccount);
     confirmSetting.addEventListener("click",settingConfirm);
-    readRecordProject.addEventListener("click",readProject);
+    //readRecordProject.addEventListener("click",readProject);
     settingControl.addEventListener("click",controlSetting);
-    //set_meeting_btn.addEventListener("click",settingConfirm);
     play.addEventListener("click",startrecord);
     stop.addEventListener("click",stoprecord);
     showSubtitle.addEventListener("click",showsub);
@@ -140,8 +138,6 @@ function buildListener(){
     plus.addEventListener("click",plusTime);
     minus.addEventListener("click",minusTime);
     Remodify.addEventListener("click",recover);
-    g_signin.addEventListener("click",signInWithGoogle);
-    g_signup.addEventListener("click",signUpWithGoogle);
 }
 function elementhide(){
     $("#record").hide();
@@ -158,43 +154,7 @@ function elementhide(){
 /*
         以下為語音辨識的各類事件            
                                      */
-function signUpWithGoogle(){
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-  // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
-  // The signed-in user info.
-        var user = result.user;
-  // ...
-    }).catch(function(error) {
-  // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-  // The email of the user's account used.
-    var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-  // ...
-});
-}   
-function signInWithGoogle(){
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-  // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
-  // The signed-in user info.
-        var user = result.user;
-  // ...
-    }).catch(function(error) {
-  // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-  // The email of the user's account used.
-    var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-  // ...
-});
+                        
 function onstart(){
     recognizing = true;
     subArray=new Array();
@@ -353,7 +313,6 @@ function settingConfirm(){
     if(loginorNot!=true){
         alert("尚未登入請重新登入")
     }else if(checkTitle() && checkGoal() && checkSession()){
-        window.location.assign("index_2.html");
         roomNumber=sessionNumber.value;
         console.log(roomNumber);
         var d=new Date();
