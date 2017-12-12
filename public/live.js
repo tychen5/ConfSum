@@ -130,9 +130,9 @@ function buildListener(){
     setupNewAccount.addEventListener("click",createAccount);
     confirmSetup.addEventListener("click",confirmNewAccount);
     confirmSetting.addEventListener("click",settingConfirm);
-    //readRecordProject.addEventListener("click",readProject);
+    readRecordProject.addEventListener("click",readProject);
     settingControl.addEventListener("click",controlSetting);
-    set_meeting_btn.addElement("click",settingConfirm);
+    set_meeting_btn.addEventListener("click",settingConfirm);
     play.addEventListener("click",startrecord);
     stop.addEventListener("click",stoprecord);
     showSubtitle.addEventListener("click",showsub);
