@@ -220,10 +220,11 @@ function readSubtitle(id_string){//讀取所有字幕
         
       for(var i in snapshot.val()){
           
-          string=JSON.stringify(snapshot.val()[i]);        
-          text = document.createTextNode(string.substr(1,string.length-2)+"\n");
+          string=JSON.stringify(snapshot.val()[i]);
+          
+          text = document.createTextNode(final_id+"說:"+string.substr(1,string.length-2)+"\n");
           textarea.append(text);
-                    
+                
           
         }
         console.log(textarea.value);
