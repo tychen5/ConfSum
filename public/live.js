@@ -219,7 +219,7 @@ function readSubtitle(id_string){//讀取所有字幕
     allsubref.limitToLast(1).on('value', function(snapshot) {
         
       for(var i in snapshot.val()){
-          
+          console.log(i);
           string=JSON.stringify(snapshot.val()[i]);
           
           text = document.createTextNode(final_id+"說:"+string.substr(1,string.length-2)+"\n");
