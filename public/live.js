@@ -38,7 +38,7 @@ window.onload=function(){
     ms = new Date().getTime()
     firebase.initializeApp(config);
     database = firebase.database().ref()
-    var provider = new firebase.auth.GoogleAuthProvider(); 
+    /*var provider = new firebase.auth.GoogleAuthProvider(); 
     firebase.auth().signInWithPopup(provider).then(function(result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
       var token = result.credential.accessToken;
@@ -57,7 +57,7 @@ window.onload=function(){
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
       // ...
-    });
+    }); */
     buildListener();
     showdate();
     getAccountInfo();
@@ -249,15 +249,42 @@ function stoprecord(event){
         recognition.stop();
     }
 }
-function googleSignout() {
+function Signout() {
    firebase.auth().signOut()
 	
    .then(function() {
-      window.alert('Signout Succesfull')
+      window.alert('Subtitler Signout Succesfull')
    }, function(error) {
       console.log('Signout Failed')  
    });
 }
+
+function GoogleSignin(){
+        var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      var user = firebase.auth().currentUser;
+      // The signed-in user info.
+      //var user = result.user;
+      var user2 =user.displayName;
+        window.alert("Welcome:"+user2);
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+
+
+
+}
+
 function FBSignin(){
     var provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
