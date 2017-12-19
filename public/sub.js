@@ -183,11 +183,13 @@ function startrecord(event){
 function getGoogleAuthentication(){
     var provider = new firebase.auth.GoogleAuthProvider(); 
     firebase.auth().signInWithRedirect(provider);
-    firebase.auth().getRedirectResult().then(function(result) {
-    if (result.credential) {
+    //window.location = 'Setmeeting.html';
+    firebase.auth().getRedirectResult().then(result => {
+    if (result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
+        console.log("lksl")
         var token = result.credential.accessToken;
-        window.location.assign("Setmeeting.html");
+        window.location = 'Setmeeting.html';
     // ...
     }
   // The signed-in user info.

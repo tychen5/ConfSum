@@ -1,0 +1,17 @@
+[debug] [2017-12-12T14:26:06.023Z] ----------------------------------------------------------------------
+[debug] [2017-12-12T14:26:06.024Z] Command:       /usr/bin/node /usr/bin/firebase deploy
+[debug] [2017-12-12T14:26:06.024Z] CLI Version:   3.16.0
+[debug] [2017-12-12T14:26:06.024Z] Platform:      linux
+[debug] [2017-12-12T14:26:06.024Z] Node Version:  v8.9.3
+[debug] [2017-12-12T14:26:06.025Z] Time:          Tue Dec 12 2017 22:26:06 GMT+0800 (CST)
+[debug] [2017-12-12T14:26:06.025Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-12T14:26:06.032Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-12T14:26:06.033Z] > authorizing via signed-in user
+[debug] [2017-12-12T14:26:06.034Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/sdm-subtitle  
+  
+ Tue Dec 12 2017 22:26:06 GMT+0800 (CST)
+[debug] [2017-12-12T14:26:06.872Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-12T14:26:06.872Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/sdm-subtitle/tokens  
+  
+ Tue Dec 12 2017 22:26:06 GMT+0800 (CST)
