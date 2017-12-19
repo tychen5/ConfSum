@@ -249,6 +249,15 @@ function stoprecord(event){
         recognition.stop();
     }
 }
+function googleSignout() {
+   firebase.auth().signOut()
+	
+   .then(function() {
+      window.alert('Signout Succesfull')
+   }, function(error) {
+      console.log('Signout Failed')  
+   });
+}
 function getAccountPermission(){
     var checkpassword=""; firebase.database().ref('users/'+id.value+"/Password").once("value").then(function(snapshot){
          checkpassword=snapshot.val();
