@@ -221,7 +221,7 @@ function readSubtitle(id_string){//讀取所有字幕
     allsubref.limitToLast(1).on('value', function(snapshot) {
         
       for(var i in snapshot.val()){
-          
+          console.log(i);
           string=JSON.stringify(snapshot.val()[i]);
           
           text = document.createTextNode(final_id+"說:"+string.substr(1,string.length-2)+"\n");
@@ -340,17 +340,23 @@ function createAccount(){
 }
 function confirmNewAccount(){
     if(id.value==""){
-        alert("帳戶名稱不可為空直");
+        window.alert("帳戶名稱不可為空直");
     }else if(!checkRepeatAccount(id.value,idArray)){
         if(password.value=="")
             alert("密碼不能為空直");
         else if(password.value!=checkpassword.value)
             alert("確認密碼與密碼不一致")
-        else{
-            alert("成功創立帳號");
+        else{            
+            firebase.auth().createUserWithEmailAndPassword(id.value.toString(), password.value.toString()).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ...
+            });
+            window.alert("成功創立帳號");
             final_id=id.value;
             final_password=password.value;
-            writeUserData(final_id,final_password);
+            //writeUserData(final_id,final_password);
         }
     }else{
         alert("此「"+id.value+"」帳戶名稱已被使用");
