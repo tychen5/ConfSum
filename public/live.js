@@ -46,7 +46,7 @@ window.onload=function(){
       // The signed-in user info.
       //var user = result.user;
       var user2 =user.displayName;
-        window.alert(user2);
+        window.alert("Welcome:"+user2);
       // ...
     }).catch(function(error) {
       // Handle Errors here.
