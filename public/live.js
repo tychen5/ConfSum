@@ -254,7 +254,7 @@ function readSubtitle(id_string){//讀取所有字幕
     //allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
     allsubref = firebase.database().ref('test/Subtitle/'+roomNumber+'/');
 
-    allsubref.limitToLast(1).on('value', function(snapshot) {
+    allsubref.limitToLast(1).onChildAdded('value', function(snapshot) {
         
       for(var i in snapshot.val()){
           
