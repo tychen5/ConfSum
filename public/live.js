@@ -233,37 +233,44 @@ function startrecord(event){
 function readSubtitle(id_string){//讀取所有字幕
     var text;
     var string;
-    allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
-    allsubref2 = firebase.database().ref('test/Subtitle');
+    var name;
+    var timestamp;
+    //allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
+    allsubref = firebase.database().ref('test/Subtitle');
+    //allsubref2 = firebase.database().ref('test/Subtitle');
     allsubref.limitToLast(1).on('value', function(snapshot) {
         
       for(var i in snapshot.val()){
-          console.log(i);
-          string=JSON.stringify(snapshot.val()[i]);
           
-          text = document.createTextNode(final_id+"說:"+string.substr(1,string.length-2)+"\n");
+              
+          console.log("這是console.log:"+i.id+".id");
+          name=JSON.stringify(snapshot.val()[i].id);
+          string=JSON.stringify(snapshot.val()[i].record_perSentence);
+          timestamp=JSON.stringify(snapshot.val()[i].time);
+          //textarea.append('<span>'+snapshot.val()[i].id+'說：'+string+","+snapshot.val()[i].time+'</span><br/>');
+          text = document.createTextNode(name+"說:"+string.substr(1,string.length-2)+timestamp+"\n");
           textarea.append(text);
                 
           
         }
-        console.log(textarea.value);
+        console.log("這是console.log(textarea.value):"+textarea.value);
         
     });
-    allsubref2.limitToLast(1).on('value', function(snapshot) {
+    //allsubref2.limitToLast(1).on('value', function(snapshot) {
         
-      for(var i in snapshot.val()){
-          textarea2.append('<span>'+snapshot.val()[i].id+' 說：'+snapshot.val()[i].record_perSentence+","+snapshot.val()[i].time+'</span><br/>');
-          console.log(i.id);
+    //  for(var i in snapshot.val()){
+    //      textarea2.append('<span>'+snapshot.val()[i].id+' 說：'+snapshot.val()[i].record_perSentence+","+snapshot.val()[i].time+'</span><br/>');
+    //      console.log(i.id);
           //string=JSON.stringify(snapshot.val()[i].record_perSentence);
           
           //text = document.createTextNode(i.id+"說:"+string.substr(1,string.length-2)+"\n");
           //textarea2.append(text);
                 
           
-        }
-        console.log(textarea2.value);
+    //    }
+    //    console.log(textarea2.value);
         
-    });
+    //});
     
 }
 /*, function (errorObject) {
