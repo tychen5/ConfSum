@@ -7,7 +7,7 @@
     messagingSenderId: "45748735409"
   };
 //Login Page Element
-var id,password,checkpassword,login,setupNewAccount,confirmSetup;
+var account,password,checkpassword,login,setupNewAccount,confirmSetup;
 var textarea,textarea2;
 var idArray,loginorNot=false;
 //Basic Setting Page Element
@@ -80,12 +80,13 @@ function checkAuth(){
             
             
             $("#BasicSetting").trigger( "click" );
-            console.log("SignIn!");
-            
+            console.log("登入成功");
+            return true;
             // User is signed in.
         }
         else{
-            console.log("Not SignIn yet!");
+            console.log("登入失敗，請重新登入");
+            return false;
         }
     });
 }
@@ -98,7 +99,7 @@ function makeUser(){
     biguser_uid = biguser.uid;
 }
 function buildElement(){
-    id=document.getElementById("id");
+    id=document.getElementById("account");
     password=document.getElementById("password");
     gSigninBTN=document.getElementById("gSigninBTN");
     fbSigninBTN=document.getElementById("fbSigninBTN");
@@ -315,7 +316,8 @@ function Signout() {
    firebase.auth().signOut()
 	
    .then(function() {
-      window.alert('Subtitler Signout Succesfull')
+      window.alert('Subtitler Signout Succesfull');
+      $("#signinTAB").trigger("click");
    }, function(error) {
       console.log('Signout Failed')  
    });
@@ -358,21 +360,21 @@ function FBSignin(){
     // The signed-in user info.
     //var user = result.user;
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
     makeUser();
     // The signed-in user info.
      //var user = result.user;
     var user2 =biguser.displayName;
     window.alert("Welcome:"+user2);
         
-=======
+//=======
     biguser = firebase.auth().currentUser;
-      // The signed-in user info.
-      //var user = result.user;
-      var user2 =biguser.displayName;
-        window.alert("Welcome:"+user2);
-       greet.innerHTML="Hello，"+user2; 
->>>>>>> 9c1d750d8e94da8eb25f336cd5c9cd890456f88e
+    // The signed-in user info.
+    //var user = result.user;
+    //var user2 =biguser.displayName;
+    // window.alert("Welcome:"+user2);
+    greet.innerHTML="Hello，"+user2; 
+//>>>>>>> 9c1d750d8e94da8eb25f336cd5c9cd890456f88e
 
 
   // ...
@@ -390,22 +392,24 @@ checkAuth();
 
 }
 function getAccountPermission(){ 
-  /*  var checkpassword=""; firebase.database().ref('users/'+id.value+"/Password").once("value").then(function(snapshot){
-         checkpassword=snapshot.val();
-         if(!checkRepeatAccount(id.value,idArray))
-             alert("找無此帳號");
-         else if(checkpassword!=password.value)
-             alert("密碼錯誤");
-         else{ */  
-             final_id=biguser.displayName;
-             final_password=password.value;
-             greet.innerHTML="Hello，"+final_id;
-             loginorNot=true;
-             $("#BasicSetting").trigger( "click" );
-   //      }
- //   });
-    
-    
+  firebase.auth().signInWithEmailAndPassword(id.value, password.value)
+    .catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  if (errorCode === 'auth/wrong-password') {
+    alert('Wrong password.');
+  } else {
+    alert(errorMessage);
+  }
+  console.log(error);
+});
+checkAuth();
+final_id=biguser.displayName;
+final_password=password.value;
+greet.innerHTML="Hello，"+final_id;
+loginorNot=true;
+
 }
 function createAccount(){
     $("#recheckPassword").show("slow");
@@ -469,7 +473,7 @@ function writeUserData(id,password) {
 function settingConfirm(){
     /*if(loginorNot!=true){
         alert("尚未登入請重新登入")
-    }else */ 
+    }else */
         if(checkTitle() && checkGoal() && checkSession()){
         loginorNot=true
         roomNumber=sessionNumber.value;
@@ -503,7 +507,7 @@ function settingConfirm(){
 }
 function readProject(){
     var getFileOrNot=false;
-    if(loginorNot!=true){
+    if(checkAuth()!=true){
         alert("尚未登入請重新登入")
     }else if(checkTitle()){
         getUserTitle(final_id);
@@ -533,7 +537,7 @@ function controlSetting(){
     }
 }
 function showsub(){
-    if(loginorNot!=true){
+    if(checkAuth()!=true){
         alert("尚未登入請重新登入")
     }
     else{    
