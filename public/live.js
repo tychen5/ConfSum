@@ -478,7 +478,7 @@ function settingConfirm(){
         });
         
         texttitle.textContent=final_title+"_會議記錄_"+date;
-        getUserTitle(final_id);
+        //getUserTitle(final_id);
         firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title).set(
         {
             "Date":date,
