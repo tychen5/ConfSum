@@ -360,33 +360,15 @@ function FBSignin(){
     // The signed-in user info.
     //var user = result.user;
 
-//<<<<<<< HEAD
+
     makeUser();
     // The signed-in user info.
      //var user = result.user;
     var user2 =biguser.displayName;
     window.alert("Welcome:"+user2);
-        
-//=======
-<<<<<<< HEAD
-    biguser = firebase.auth().currentUser;
-    // The signed-in user info.
-    //var user = result.user;
-    //var user2 =biguser.displayName;
-    // window.alert("Welcome:"+user2);
     greet.innerHTML="Hello，"+user2; 
-=======
-    //biguser = firebase.auth().currentUser;
-      // The signed-in user info.
-      //var user = result.user;
-     // var user2 =biguser.displayName;
-       // window.alert("Welcome:"+user2);
-       greet.innerHTML="Hello，"+user2; 
->>>>>>> 84348e75f55668236ff56fd2498a4b7c644586e9
-//>>>>>>> 9c1d750d8e94da8eb25f336cd5c9cd890456f88e
 
 
-  // ...
 }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
