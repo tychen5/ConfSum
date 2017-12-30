@@ -28,7 +28,7 @@ var roomNumber;
 var recognition, recognizing = false;
 var subArray,timeArray;
 var interval,timeCount=0,firstword=true,startTime,endTime;
-var subRef,wordNum,allsubref;
+var subRef,wordNum,allsubref,previoussubref;
 var database,ms;
 //確認後的各項變數
 var final_id="",final_password="",final_title="";
@@ -465,7 +465,8 @@ function settingConfirm(){
         $("#textarea").show("slow");
         $("#textoutbound").show("slow");
         controlSetting();
-        database.once('test/Subtitle/'+roomNumber+'/', function(snapshot) {
+        previoussubref=firebase.database().ref('test/Subtitle/'+roomNumber+'/');
+        previoussubref.once('value', function(snapshot) {
             
         for(var i in snapshot.val()){
                 
