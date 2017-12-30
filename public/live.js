@@ -139,6 +139,7 @@ function buildElement(){
 }
 function buildListener(){
     login.addEventListener("click",getAccountPermission);
+   // greet.innerHTML="Hello，"+final_id;
     setupNewAccount.addEventListener("click",createAccount);
     confirmSetup.addEventListener("click",confirmNewAccount);
     confirmSetting.addEventListener("click",settingConfirm);
@@ -332,6 +333,7 @@ function GoogleSignin(){
       var user2 =biguser.displayName;
         console.log(result);
         window.alert("Welcome:"+user2);
+      greet.innerHTML="Hello，"+user2;
       // ...
     }).catch(function(error) {
       // Handle Errors here.
@@ -356,12 +358,21 @@ function FBSignin(){
     // The signed-in user info.
     //var user = result.user;
 
+<<<<<<< HEAD
     makeUser();
     // The signed-in user info.
      //var user = result.user;
     var user2 =biguser.displayName;
     window.alert("Welcome:"+user2);
         
+=======
+    biguser = firebase.auth().currentUser;
+      // The signed-in user info.
+      //var user = result.user;
+      var user2 =biguser.displayName;
+        window.alert("Welcome:"+user2);
+       greet.innerHTML="Hello，"+user2; 
+>>>>>>> 9c1d750d8e94da8eb25f336cd5c9cd890456f88e
 
 
   // ...
@@ -456,9 +467,11 @@ function writeUserData(id,password) {
     });
 }
 function settingConfirm(){
-    if(loginorNot!=true){
+    /*if(loginorNot!=true){
         alert("尚未登入請重新登入")
-    }else if(checkTitle() && checkGoal() && checkSession()){
+    }else */ 
+        if(checkTitle() && checkGoal() && checkSession()){
+        loginorNot=true
         roomNumber=sessionNumber.value;
         console.log(roomNumber);
         var d=new Date();
@@ -468,7 +481,7 @@ function settingConfirm(){
         day=d.getDate();
         var date=""+year+"/"+month+"/"+day;
         final_title=title.value;
-        downloadName.value=final_id+"_"+final_title+".srt";
+        downloadName.value=final_id+"_"+final_title+".txt";
         recognition.lang=lang.value;
         $("#record").show("slow");
         $("#recordchat").show("slow");
@@ -498,7 +511,7 @@ function readProject(){
             if(title.value==titleArray[i]){
                 getFileOrNot=true;
                 final_title=title.value;
-                downloadName.value=final_id+"_"+final_title+".srt";
+                downloadName.value=final_id+"_"+final_title+".txt";
                 $("#Remodify").trigger("click");
                 $("#showSubtitle").trigger("click");
             }
