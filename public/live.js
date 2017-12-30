@@ -435,9 +435,11 @@ function writeUserData(id,password) {
     });
 }
 function settingConfirm(){
-    if(loginorNot!=true){
+    /*if(loginorNot!=true){
         alert("尚未登入請重新登入")
-    }else if(checkTitle() && checkGoal() && checkSession()){
+    }else */ 
+        if(checkTitle() && checkGoal() && checkSession()){
+        loginorNot=true
         roomNumber=sessionNumber.value;
         console.log(roomNumber);
         var d=new Date();
