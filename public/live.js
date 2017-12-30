@@ -686,7 +686,7 @@ function showdate(){
     month=d.getMonth()+1;
     day=d.getDate();
     var date=""+year+"/"+month+"/"+day;
-    mydate.innerHTML="今日日期:"+date;
+    mydate.innerHTML="Date:"+date;
 }
 function getsubStr(string){//將一字串的頭尾去除
     return string.substring(1,string.length-1);
