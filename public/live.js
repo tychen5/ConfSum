@@ -389,7 +389,7 @@ function createAccount(){
 function confirmNewAccount(){
     if(id.value==""){
         window.alert("帳戶名稱不可為空直");
-    }else if(true)){
+    }else if(true){
         if(password.value=="")
             alert("密碼不能為空直");
         else if(password.value!=checkpassword.value)
