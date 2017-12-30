@@ -23,7 +23,7 @@ var set_meeting_btn;
 var downloadName,downloadText;
 //Content Bar item
 var BasicSetting,Remodify;
-var roomNumber="test";
+var roomNumber;
 //recognizer Object
 var recognition, recognizing = false;
 var subArray,timeArray;
@@ -189,15 +189,9 @@ function onresult(event){
     hour=d.getHours();
     minutes=d.getMinutes();
     seconds=d.getSeconds();
-    if(hour<10){
-        hour = '0'+hour;
-    }
-    if(minutes<10){
-        minutes = '0' + minutes;
-    }
-    if(seconds<10){
-        seconds = '0' + seconds;
-    }
+    if(hour<10){hour = '0'+hour;}
+    if(minutes<10){minutes = '0' + minutes;}
+    if(seconds<10){seconds = '0' + seconds;}
     var timing=hour+':'+minutes+':'+seconds;
     
     var interim_transcript = '';
@@ -221,7 +215,7 @@ function onresult(event){
                             record_perSentence:subArray[subArray.length-1]
                             };
 
-            firebase.database().ref('test/Subtitle/').push(postData);
+            firebase.database().ref('test/Subtitle/'+roomNumber+'/').push(postData);
             firstword=true;
             } 
             else { 
@@ -259,17 +253,17 @@ function readSubtitle(id_string){//讀取所有字幕
     var name;
     var timestamp;
     //allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
-    allsubref = firebase.database().ref('test/Subtitle');
-    //allsubref2 = firebase.database().ref('test/Subtitle');
+    allsubref = firebase.database().ref('test/Subtitle'+roomNumber+'/');
+
     allsubref.limitToLast(1).on('value', function(snapshot) {
         
       for(var i in snapshot.val()){
           
               
           console.log("這是console.log:"+i.id+".id");
-          name=JSON.stringify(snapshot.val()[i].id);
+          //name=JSON.stringify(snapshot.val()[i].id);
           string=JSON.stringify(snapshot.val()[i].record_perSentence);
-          timestamp=JSON.stringify(snapshot.val()[i].time);          
+          //timestamp=JSON.stringify(snapshot.val()[i].time);          
           text = document.createTextNode(snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+snapshot.val()[i].time+"\n");
           textarea.append(text);
                 
@@ -374,12 +368,12 @@ function SignInWithMail(){
     alert(errorMessage);
   }
   console.log(error);
-});
-checkAuth();
-final_id=biguser.displayName;
-final_password=password.value;
-greet.innerHTML="Hello，"+final_id;
-loginorNot=true;
+  });
+  checkAuth();
+  final_id=biguser.displayName;
+  final_password=password.value;
+  greet.innerHTML="Hello，"+final_id;
+  loginorNot=true;
 
 }
 function createAccount(){
