@@ -139,7 +139,7 @@ function buildElement(){
     downloadlink=document.getElementById("downloadlink");
 }
 function buildListener(){
-    login.addEventListener("click",SigninwithEmail);
+    login.addEventListener("click",SignInWithMail);
    // greet.innerHTML="Hello，"+final_id;
     setupNewAccount.addEventListener("click",createAccount);
     confirmSetup.addEventListener("click",confirmNewAccount);
@@ -269,9 +269,8 @@ function readSubtitle(id_string){//讀取所有字幕
           console.log("這是console.log:"+i.id+".id");
           name=JSON.stringify(snapshot.val()[i].id);
           string=JSON.stringify(snapshot.val()[i].record_perSentence);
-          timestamp=JSON.stringify(snapshot.val()[i].time);
-          //textarea.append('<span>'+snapshot.val()[i].id+'說：'+string+","+snapshot.val()[i].time+'</span><br/>');
-          text = document.createTextNode(snapshot.val()[i].id+"說:"+string.substr(1,string.length-2)+snapshot.val()[i].time+"\n");
+          timestamp=JSON.stringify(snapshot.val()[i].time);          
+          text = document.createTextNode(snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+snapshot.val()[i].time+"\n");
           textarea.append(text);
                 
           
@@ -279,27 +278,10 @@ function readSubtitle(id_string){//讀取所有字幕
         console.log("這是console.log(textarea.value):"+textarea.value);
         
     });
-    //allsubref2.limitToLast(1).on('value', function(snapshot) {
-        
-    //  for(var i in snapshot.val()){
-    //      textarea2.append('<span>'+snapshot.val()[i].id+' 說：'+snapshot.val()[i].record_perSentence+","+snapshot.val()[i].time+'</span><br/>');
-    //      console.log(i.id);
-          //string=JSON.stringify(snapshot.val()[i].record_perSentence);
-          
-          //text = document.createTextNode(i.id+"說:"+string.substr(1,string.length-2)+"\n");
-          //textarea2.append(text);
-                
-          
-    //    }
-    //    console.log(textarea2.value);
-        
-    //});
+    
     
 }
-/*, function (errorObject) {
-        text = document.createTextNode("The read failed: " + errorObject.code);
-        textarea.append(text);
-    }*/
+
 
 function stoprecord(event){
     if(recognizing){
@@ -313,9 +295,7 @@ function stoprecord(event){
     }
 }
 function Signout() {
-   firebase.auth().signOut()
-	
-   .then(function() {
+   firebase.auth().signOut().then(function() {
       window.alert('Subtitler Signout Succesfull');
       $("#signinTAB").trigger("click");
    }, function(error) {
@@ -382,7 +362,7 @@ function FBSignin(){
 checkAuth();
 
 }
-function SigninwithEmail(){ 
+function SignInWithMail(){ 
   firebase.auth().signInWithEmailAndPassword(id.value.toString(), password.value.toString())
     .catch(function(error) {
   // Handle Errors here.
@@ -426,6 +406,11 @@ function confirmNewAccount(){
                 // ...
             });
             window.alert("成功創立帳號");
+            $("#recheckPassword").hide();
+            $("#fbSigninBTN").show("slow");
+            $("#gSigninBTN").show("slow");
+            $("#setupNewAccount").show("slow");
+            $("#confirmSetup").hide();
             final_id=id.value;
             final_password=password.value;
             //writeUserData(final_id,final_password);
@@ -433,6 +418,7 @@ function confirmNewAccount(){
     }else{
         alert("此「"+id.value+"」帳戶名稱已被使用");
     }
+    
 }
 function checkRepeatAccount(id,idArray){
     for(var i=0;i<idArray.length;i++){
