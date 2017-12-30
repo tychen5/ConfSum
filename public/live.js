@@ -152,6 +152,8 @@ function buildListener(){
     plus.addEventListener("click",plusTime);
     minus.addEventListener("click",minusTime);
     Remodify.addEventListener("click",recover);
+    gSigninBTN.addEventListener("click",GoogleSignin);
+    fbSigninBTN.addEventListener("click",FBSignin);
 }
 function elementhide(){
     $("#record").hide();
