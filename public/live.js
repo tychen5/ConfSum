@@ -169,6 +169,10 @@ function onerror(event){
 }
 function onresult(event){
     var text;
+    hour=d.getHours();
+    minutes=d.getMinutes();
+    seconds=d.getSeconds();
+    var timing=","+hour+minutes+seconds;
     var interim_transcript = '';
     var final_transcript = '';
     for (var i = event.resultIndex; i < event.results.length; ++i) {
@@ -185,19 +189,20 @@ function onresult(event){
             var postData = {
                             id:biguser.displayName,
                             title:final_title,
-                            num:subArray
+                            time:timing,
+                            record_perSentence:subArray[subArray.length-1]
                             };
 
             firebase.database().ref('test/Subtitle/').push(postData);
             firstword=true;
-        } 
-        else { 
-            if(firstword){
+            } 
+            else { 
+                if(firstword){
                 startTime=timeCount*100+Math.floor(Math.random()*100);
                 timeArray.push(startTime);
                 updateTime(final_id,final_title,timeArray);
                 firstword=false;
-            }
+                }
             interim_transcript = event.results[i][0].transcript;
             inputText.value=interim_transcript;
             
@@ -387,11 +392,16 @@ function writeUserData(id,password) {
     year=d.getFullYear();
     month=d.getMonth()+1;
     day=d.getDate();
+    hour=d.getHours();
+    minutes=d.getMinutes();
+    seconds=d.getSeconds();
     var date="建立日期:"+year+month+day;
+    var timing=","+hour+minutes+seconds;
     firebase.database().ref('users/'+ id).set(
     {
         "Password": password,
         "Date": date,
+        "Time": timing,
         "RecordTitle":""
     });
 }
