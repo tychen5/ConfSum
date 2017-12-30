@@ -365,7 +365,7 @@ function getAccountPermission(){
          else if(checkpassword!=password.value)
              alert("密碼錯誤");
          else{
-             final_id=id.value;
+             final_id=biguser.displayName;
              final_password=password.value;
              greet.innerHTML="Hello，"+final_id;
              loginorNot=true;
