@@ -31,7 +31,7 @@ var subRef,wordNum,allsubref;
 var database,ms;
 //確認後的各項變數
 var final_id="",final_password="",final_title="";
-
+var biguser;
 window.onload=function(){
     //window.location.assign('loginPage.html');
     buildElement();
@@ -43,6 +43,7 @@ window.onload=function(){
     showdate();
     getAccountInfo();
     elementhide();
+    
     
     if (!('webkitSpeechRecognition' in window)) {
         alert("此瀏覽器不支援語音辨識，請更換瀏覽器！(Chrome 25版以上才支援語音辨識)");
@@ -181,6 +182,13 @@ function onresult(event){
             subArray.push(final_transcript);            
             updateRealtimeSubtitle(final_id,final_title,final_transcript);
             updateSubtitle(final_id,final_title,subArray);
+            var postData = {
+                            id:biguser.displayName,
+                            title:final_title,
+                            num:subArray
+                            };
+
+            firebase.database().ref('test/Subtitle/').push(postData);
             firstword=true;
         } 
         else { 
@@ -263,10 +271,10 @@ function GoogleSignin(){
     // This gives you a Google Access Token. You can use it to access the Google API.
       var token = result.credential.accessToken;
         
-      var user = firebase.auth().currentUser;
+      biguser = firebase.auth().currentUser;
       // The signed-in user info.
       //var user = result.user;
-      var user2 =user.displayName;
+      var user2 =biguser.displayName;
         console.log(result);
         window.alert("Welcome:"+user2);
       // ...
@@ -293,10 +301,10 @@ function FBSignin(){
   // The signed-in user info.
   //var user = result.user;
 
-    var user = firebase.auth().currentUser;
+    biguser = firebase.auth().currentUser;
       // The signed-in user info.
       //var user = result.user;
-      var user2 =user.displayName;
+      var user2 =biguser.displayName;
         window.alert("Welcome:"+user2);
         
 
