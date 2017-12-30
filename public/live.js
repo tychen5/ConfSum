@@ -216,7 +216,7 @@ function onresult(event){
                             record_perSentence:subArray[subArray.length-1]
                             };
 
-            firebase.database().ref('test/Subtitle/'+roomNumber+'/').push(postData);
+            firebase.database().ref('test/Subtitle/'+roomNumber).push(postData);
             firstword=true;
             } 
             else { 
@@ -254,7 +254,7 @@ function readSubtitle(id_string){//讀取所有字幕
     var name;
     var timestamp;
     //allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
-    allsubref = firebase.database().ref('test/Subtitle/'+roomNumber+'/');
+    allsubref = firebase.database().ref('test/Subtitle/'+roomNumber);
     allsubref.limitToLast(1).on('child_added',function(snapshot){        
       for(var i in snapshot.val()){
           
@@ -371,6 +371,7 @@ function SignInWithMail(){
   }
   console.log(error);
   });
+  makeUser();
   checkAuth();
   final_id=biguser_name;
   final_password=password.value;
@@ -465,7 +466,7 @@ function settingConfirm(){
         $("#textarea").show("slow");
         $("#textoutbound").show("slow");
         controlSetting();
-        previoussubref=firebase.database().ref('test/Subtitle/'+roomNumber+'/');
+        previoussubref=firebase.database().ref('test/Subtitle/'+roomNumber);
         previoussubref.once('value', function(snapshot) {
             
         for(var i in snapshot.val()){
