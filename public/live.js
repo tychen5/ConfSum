@@ -451,7 +451,7 @@ function settingConfirm(){
         day=d.getDate();
         var date=""+year+"/"+month+"/"+day;
         final_title=title.value;
-        downloadName.value=final_id+"_"+final_title+".srt";
+        downloadName.value=final_id+"_"+final_title+".txt";
         recognition.lang=lang.value;
         $("#record").show("slow");
         $("#recordchat").show("slow");
@@ -481,7 +481,7 @@ function readProject(){
             if(title.value==titleArray[i]){
                 getFileOrNot=true;
                 final_title=title.value;
-                downloadName.value=final_id+"_"+final_title+".srt";
+                downloadName.value=final_id+"_"+final_title+".txt";
                 $("#Remodify").trigger("click");
                 $("#showSubtitle").trigger("click");
             }
