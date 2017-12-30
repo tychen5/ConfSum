@@ -37,15 +37,8 @@ window.onload=function(){
     buildElement();
     ms = new Date().getTime()
     firebase.initializeApp(config);
-    database = firebase.database().ref()
-    firebase.auth().onAuthStateChanged(function(user){
-        if (user){
-            console.log("login!");
-        }
-        else{
-            console.log("not login yet!");
-        }
-    });
+    database = firebase.database().ref();
+   
     buildListener();
     showdate();
     getAccountInfo();
@@ -64,7 +57,7 @@ window.onload=function(){
     recognition.onend =onend;
     recognition.onerror= onerror;
     recognition.onresult = onresult;
-    
+    checkAuth();
     
     /*
     var text;
@@ -77,6 +70,17 @@ window.onload=function(){
         console.log(textarea.value);
     });
       */  
+}
+function checkAuth(){
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            console.log("SignIn!");        
+            // User is signed in.
+        }
+        else{
+            console.log("Not SignIn yet!");
+        }
+    });
 }
 function buildElement(){
     id=document.getElementById("id");
@@ -272,7 +276,7 @@ function GoogleSignin(){
       var credential = error.credential;
       // ...
     });
-
+    checkAuth();
 
 
 }
@@ -290,7 +294,7 @@ function FBSignin(){
       //var user = result.user;
       var user2 =user.displayName;
         window.alert("Welcome:"+user2);
-
+        
 
 
   // ...
@@ -304,7 +308,7 @@ function FBSignin(){
   var credential = error.credential;
   // ...
 });
-
+checkAuth();
 
 }
 function getAccountPermission(){
@@ -322,6 +326,7 @@ function getAccountPermission(){
              $("#BasicSetting").trigger( "click" );
          }
     });
+    checkAuth();
     
 }
 function createAccount(){
