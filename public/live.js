@@ -368,12 +368,21 @@ function FBSignin(){
     window.alert("Welcome:"+user2);
         
 //=======
+<<<<<<< HEAD
     biguser = firebase.auth().currentUser;
     // The signed-in user info.
     //var user = result.user;
     //var user2 =biguser.displayName;
     // window.alert("Welcome:"+user2);
     greet.innerHTML="Hello，"+user2; 
+=======
+    //biguser = firebase.auth().currentUser;
+      // The signed-in user info.
+      //var user = result.user;
+     // var user2 =biguser.displayName;
+       // window.alert("Welcome:"+user2);
+       greet.innerHTML="Hello，"+user2; 
+>>>>>>> 84348e75f55668236ff56fd2498a4b7c644586e9
 //>>>>>>> 9c1d750d8e94da8eb25f336cd5c9cd890456f88e
 
 
@@ -485,7 +494,7 @@ function settingConfirm(){
         day=d.getDate();
         var date=""+year+"/"+month+"/"+day;
         final_title=title.value;
-        downloadName.value=final_id+"_"+final_title+".txt";
+        downloadName.value=final_id+"會議記錄_"+final_title+".txt";
         recognition.lang=lang.value;
         $("#record").show("slow");
         $("#recordchat").show("slow");
@@ -515,7 +524,7 @@ function readProject(){
             if(title.value==titleArray[i]){
                 getFileOrNot=true;
                 final_title=title.value;
-                downloadName.value=final_id+"_"+final_title+".txt";
+                downloadName.value=final_id+"會議記錄_"+final_title+".txt";
                 $("#Remodify").trigger("click");
                 $("#showSubtitle").trigger("click");
             }
@@ -547,8 +556,8 @@ function showsub(){
         $("#minusTime").show();
         var text="";
         var firsttime=true;
-        subRef = firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title+'/Subtitle');
-        timeRef=firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title+'/StartEndTime');
+        subRef = firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title+'/Subtitle'); //這邊可要改~~~
+        timeRef=firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title+'/StartEndTime'); //不然會抓不到字幕QQ
     
         subRef.once("value").then(function(data){
             //document.getElementById("content").innerHTML=JSON.stringify(data.val());
