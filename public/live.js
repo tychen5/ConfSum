@@ -8,7 +8,7 @@
   };
 //Login Page Element
 var id,password,checkpassword,login,setupNewAccount,confirmSetup;
-var textarea;
+var textarea,textarea2;
 var idArray,loginorNot=false;
 //Basic Setting Page Element
 var greet,mydate,title,lang,confirmSetting,settingControl,inputText,play,stop,timelabel;
@@ -108,7 +108,9 @@ function buildElement(){
     //readRecordProject=document.getElementById("readRecordProject");
     settingControl=document.getElementById("settingControl");
     inputText=document.getElementById("inputText");
+    
     textarea=document.getElementById("textarea");
+    textarea2=document.getElementById("textarea2");
     play=document.getElementById("play");
     stop=document.getElementById("stop");
     timelabel=document.getElementById("timelabel");
@@ -144,6 +146,7 @@ function elementhide(){
     $("#record").hide();
     $("#recordchart").hide();
     $("#textarea").hide();
+    $("#textarea2").hide();
     $("#textoutbound").hide();
     $("#recheckPassword").hide();
     $("#confirmSetup").hide();
@@ -174,7 +177,7 @@ function onresult(event){
     hour=d.getHours();
     minutes=d.getMinutes();
     seconds=d.getSeconds();
-    var timing=","+hour+minutes+seconds;
+    var timing=","+hour+"'"+minutes+"'"+seconds+"'";
     var interim_transcript = '';
     var final_transcript = '';
     for (var i = event.resultIndex; i < event.results.length; ++i) {
@@ -231,6 +234,7 @@ function readSubtitle(id_string){//讀取所有字幕
     var text;
     var string;
     allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
+    allsubref2 = firebase.database().ref('test/Subtitle');
     allsubref.limitToLast(1).on('value', function(snapshot) {
         
       for(var i in snapshot.val()){
@@ -243,6 +247,22 @@ function readSubtitle(id_string){//讀取所有字幕
           
         }
         console.log(textarea.value);
+        
+    });
+    allsubref2.limitToLast(1).on('value', function(snapshot) {
+        
+      for(var i in snapshot.val()){
+          textarea2.append('<span>'+snapshot.val()[i].id+' 說：'+snapshot.val()[i].record_perSentence+","+snapshot.val()[i].time+'</span><br/>');
+          console.log(i.id);
+          //string=JSON.stringify(snapshot.val()[i].record_perSentence);
+          
+          //text = document.createTextNode(i.id+"說:"+string.substr(1,string.length-2)+"\n");
+          //textarea2.append(text);
+                
+          
+        }
+        console.log(textarea2.value);
+        
     });
     
 }
