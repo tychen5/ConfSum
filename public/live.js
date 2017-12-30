@@ -358,21 +358,21 @@ function FBSignin(){
     // The signed-in user info.
     //var user = result.user;
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
     makeUser();
     // The signed-in user info.
      //var user = result.user;
     var user2 =biguser.displayName;
     window.alert("Welcome:"+user2);
         
-=======
-    biguser = firebase.auth().currentUser;
+//=======
+    //biguser = firebase.auth().currentUser;
       // The signed-in user info.
       //var user = result.user;
-      var user2 =biguser.displayName;
-        window.alert("Welcome:"+user2);
+     // var user2 =biguser.displayName;
+       // window.alert("Welcome:"+user2);
        greet.innerHTML="Hello，"+user2; 
->>>>>>> 9c1d750d8e94da8eb25f336cd5c9cd890456f88e
+//>>>>>>> 9c1d750d8e94da8eb25f336cd5c9cd890456f88e
 
 
   // ...
