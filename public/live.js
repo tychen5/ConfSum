@@ -253,19 +253,19 @@ function readSubtitle(id_string){//讀取所有字幕
     var name;
     var timestamp;
     //allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
-    allsubref = firebase.database().ref('test/Subtitle/'+roomNumber+'/')
+    allsubref = firebase.database().ref('test/Subtitle'+roomNumber+'/');
 
     allsubref.limitToLast(1).on('value', function(snapshot) {
         
       for(var i in snapshot.val()){
           
               
-          console.log("這是console.log:"+i.id+".id");
+          console.log("這是console.log:"+i.name+".id");
           //name=JSON.stringify(snapshot.val()[i].id);
           string=JSON.stringify(snapshot.val()[i].record_perSentence);
           //timestamp=JSON.stringify(snapshot.val()[i].time);          
-          text = document.createTextNode(snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+snapshot.val()[i].time+"\n");
-        $show.append('<div class="'+snapshot.val()[i].id+'"><div>'+snapshot.val()[i].time+'</div>'+snapshot.val()[i].name+'說：'+snapshot.val()[i].record_perSentence+'</div>');
+          text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
+          textarea.append(text);
                 
           
         }
@@ -462,12 +462,7 @@ function settingConfirm(){
         $("#recordchat").show("slow");
         $("#textarea").show("slow");
         $("#textoutbound").show("slow");
-        database.once('test/Subtitle/'+roomNumber+'/', function(snapshot) {
-        $show.html('');
-            for(var i in snapshot.val()){
-                $show.append('<div><div>'+snapshot.val()[i].time+'</div>'+snapshot.val()[i].name+' 說：'+snapshot.val()[i].record_perSentence+'</div>');
-            }
-        });
+        
         controlSetting();
         texttitle.textContent=title.value+"_會議記錄_"+date;
         getUserTitle(final_id);
