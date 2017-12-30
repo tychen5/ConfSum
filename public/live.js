@@ -13,6 +13,7 @@ var idArray,loginorNot=false;
 //Basic Setting Page Element
 var greet,mydate,title,lang,confirmSetting,settingControl,inputText,play,stop,timelabel;
 var sessionNumber,meetinggoal,texttitle;
+var signinTAB;
 //var readRecordProject;
 var display=true,titleArray;
 //Remodify Page Element
@@ -32,6 +33,7 @@ var database,ms;
 //確認後的各項變數
 var final_id="",final_password="",final_title="";
 var biguser;
+var biguser_name, biguser_email, biguser_photoUrl, biguser_uid, biguser_emailVerified;
 window.onload=function(){
     //window.location.assign('loginPage.html');
     buildElement();
@@ -86,6 +88,14 @@ function checkAuth(){
             console.log("Not SignIn yet!");
         }
     });
+}
+function makeUser(){
+    biguser = firebase.auth().currentUser;
+    biguser_name = biguser.displayName;    
+    biguser_email = biguser.email;
+    biguser_photoUrl = biguser.photoURL;
+    biguser_emailVerified = biguser.emailVerified;
+    biguser_uid = biguser.uid;
 }
 function buildElement(){
     id=document.getElementById("id");
@@ -177,7 +187,17 @@ function onresult(event){
     hour=d.getHours();
     minutes=d.getMinutes();
     seconds=d.getSeconds();
-    var timing="("+"'"+hour+"'"+minutes+"'"+seconds+")";
+    if(hour<10){
+        hour = '0'+hour;
+    }
+    if(minutes<10){
+        minutes = '0' + minutes;
+    }
+    if(seconds<10){
+        seconds = '0' + seconds;
+    }
+    var timing=hour+':'+minutes+':'+seconds;
+    
     var interim_transcript = '';
     var final_transcript = '';
     for (var i = event.resultIndex; i < event.results.length; ++i) {
@@ -192,7 +212,8 @@ function onresult(event){
             updateRealtimeSubtitle(final_id,final_title,final_transcript);
             updateSubtitle(final_id,final_title,subArray);
             var postData = {
-                            id:biguser.displayName,
+                            name:biguser_name,
+                            id:biguser_uid,
                             title:final_title,
                             time:timing,
                             record_perSentence:subArray[subArray.length-1]
@@ -305,7 +326,7 @@ function GoogleSignin(){
     // This gives you a Google Access Token. You can use it to access the Google API.
       var token = result.credential.accessToken;
         
-      biguser = firebase.auth().currentUser;
+      makeUser();
       // The signed-in user info.
       //var user = result.user;
       var user2 =biguser.displayName;
@@ -330,16 +351,16 @@ function GoogleSignin(){
 function FBSignin(){
     var provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
-  // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-  var token = result.credential.accessToken;
-  // The signed-in user info.
-  //var user = result.user;
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    //var user = result.user;
 
-    biguser = firebase.auth().currentUser;
-      // The signed-in user info.
-      //var user = result.user;
-      var user2 =biguser.displayName;
-        window.alert("Welcome:"+user2);
+    makeUser();
+    // The signed-in user info.
+     //var user = result.user;
+    var user2 =biguser.displayName;
+    window.alert("Welcome:"+user2);
         
 
 
