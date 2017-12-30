@@ -357,21 +357,21 @@ function FBSignin(){
 checkAuth();
 
 }
-function getAccountPermission(){
-    var checkpassword=""; firebase.database().ref('users/'+id.value+"/Password").once("value").then(function(snapshot){
+function getAccountPermission(){ 
+  /*  var checkpassword=""; firebase.database().ref('users/'+id.value+"/Password").once("value").then(function(snapshot){
          checkpassword=snapshot.val();
          if(!checkRepeatAccount(id.value,idArray))
              alert("找無此帳號");
          else if(checkpassword!=password.value)
              alert("密碼錯誤");
-         else{
+         else{ */  
              final_id=biguser.displayName;
              final_password=password.value;
              greet.innerHTML="Hello，"+final_id;
              loginorNot=true;
              $("#BasicSetting").trigger( "click" );
-         }
-    });
+   //      }
+ //   });
     
     
 }
