@@ -169,6 +169,8 @@ function onerror(event){
 }
 function onresult(event){
     var text;
+    var d = new Date();
+    var hour,minutes,seconds;
     hour=d.getHours();
     minutes=d.getMinutes();
     seconds=d.getSeconds();
