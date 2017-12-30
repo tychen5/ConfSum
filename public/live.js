@@ -129,6 +129,7 @@ function buildElement(){
 }
 function buildListener(){
     login.addEventListener("click",getAccountPermission);
+   // greet.innerHTML="Hello，"+final_id;
     setupNewAccount.addEventListener("click",createAccount);
     confirmSetup.addEventListener("click",confirmNewAccount);
     confirmSetting.addEventListener("click",settingConfirm);
@@ -311,6 +312,7 @@ function GoogleSignin(){
       var user2 =biguser.displayName;
         console.log(result);
         window.alert("Welcome:"+user2);
+      greet.innerHTML="Hello，"+user2;
       // ...
     }).catch(function(error) {
       // Handle Errors here.
@@ -340,7 +342,7 @@ function FBSignin(){
       //var user = result.user;
       var user2 =biguser.displayName;
         window.alert("Welcome:"+user2);
-        
+       greet.innerHTML="Hello，"+user2; 
 
 
   // ...
