@@ -201,13 +201,13 @@ function onresult(event){
         if (event.results[i].isFinal) {
             endTime=timeCount*100+Math.floor(Math.random()*100);
             timeArray.push(endTime);
-            updateTime(final_id,final_title,timeArray);
+            updateTime(biguser_name,final_title,timeArray);
             
             final_transcript = event.results[i][0].transcript; 
             //textarea.value=final_transcript;
             subArray.push(final_transcript);            
-            updateRealtimeSubtitle(final_id,final_title,final_transcript);
-            updateSubtitle(final_id,final_title,subArray);
+            updateRealtimeSubtitle(biguser_name,final_title,final_transcript);
+            updateSubtitle(biguser_name,final_title,subArray);
             var postData = {
                             name:biguser_name,
                             id:biguser_uid,
@@ -223,13 +223,13 @@ function onresult(event){
                 if(firstword){
                 startTime=timeCount*100+Math.floor(Math.random()*100);
                 timeArray.push(startTime);
-                updateTime(final_id,final_title,timeArray);
+                updateTime(biguser_name,final_title,timeArray);
                 firstword=false;
                 }
             interim_transcript = event.results[i][0].transcript;
             inputText.value=interim_transcript;
             
-            updateRealtimeSubtitle(final_id,final_title,interim_transcript);
+            updateRealtimeSubtitle(biguser_name,final_title,interim_transcript);
         }
     }
 }
@@ -245,7 +245,7 @@ function startrecord(event){
             timelabel.innerHTML=changetoTime(false,timeCount*100);
         },100);
         
-        readSubtitle(final_id);
+        readSubtitle(biguser_name);
     }
 }
 function readSubtitle(id_string){//讀取所有字幕
@@ -255,11 +255,11 @@ function readSubtitle(id_string){//讀取所有字幕
     var timestamp;
     //allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
     allsubref = firebase.database().ref('test/Subtitle/'+roomNumber);
-    allsubref.limitToLast(1).on('child_added',function(snapshot){        
+    allsubref.limitToLast(1).on('value',function(snapshot){        
       for(var i in snapshot.val()){
           
               
-        console.log("這是console.log:"+i.name+".id");
+        //console.log("這是console.log:"+i.name+".id");
         
         string=JSON.stringify(snapshot.val()[i].record_perSentence);
                     
@@ -373,9 +373,9 @@ function SignInWithMail(){
   });
   makeUser();
   checkAuth();
-  final_id=biguser_name;
+  //final_id=biguser_name;
   final_password=password.value;
-  greet.innerHTML="Hello，"+final_id;
+  greet.innerHTML="Hello，"+biguser_name;
   loginorNot=true;
 
 }
@@ -408,8 +408,8 @@ function confirmNewAccount(){
             $("#gSigninBTN").show("slow");
             $("#setupNewAccount").show("slow");
             $("#confirmSetup").hide();
-            final_id=id.value;
-            final_password=password.value;
+            //final_id=id.value;
+            //final_password=password.value;
             //writeUserData(final_id,final_password);
         }
     }else{
@@ -459,7 +459,7 @@ function settingConfirm(){
         day=d.getDate();
         var date=""+year+"/"+month+"/"+day;
         final_title=title.value;
-        downloadName.value=final_id+"會議記錄_"+final_title+".txt";
+        downloadName.value=biguser_name+"會議記錄_"+final_title+".txt";
         recognition.lang=lang.value;
         $("#record").show("slow");
         $("#recordchat").show("slow");
@@ -480,7 +480,7 @@ function settingConfirm(){
         
         texttitle.textContent=final_title+"_會議記錄_"+date;
         //getUserTitle(final_id);
-        firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title).set(
+        firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title).set(
         {
             "Date":date,
             "Lang":lang.value,
@@ -513,8 +513,8 @@ function showsub(){
         $("#minusTime").show();
         var text="";
         var firsttime=true;
-        subRef = firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title+'/Subtitle'); //這邊可要改~~~
-        timeRef=firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title+'/StartEndTime'); //不然會抓不到字幕QQ
+        subRef = firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/Subtitle'); //這邊可要改~~~
+        timeRef=firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/StartEndTime'); //不然會抓不到字幕QQ
     
         subRef.once("value").then(function(data){
             //document.getElementById("content").innerHTML=JSON.stringify(data.val());
@@ -592,7 +592,7 @@ function savesub(){
     for(var i=0;i<wordNum;i++){
         array.push(document.getElementById(i).value);
     }
-    firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title).update({"Subtitle":array});
+    firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title).update({"Subtitle":array});
     
     var div=document.getElementById("div");
     while (div.hasChildNodes()) {   
@@ -601,7 +601,7 @@ function savesub(){
 }
 function plusTime(){
     var plusTimeArray=new Array();
-    firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title+"/StartEndTime").once("value").then(function(snapshot){
+    firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+"/StartEndTime").once("value").then(function(snapshot){
         var timestring=JSON.stringify(snapshot.val());
         var timewords=getsubStr(timestring).split(",");
         for(var t=0;t<timewords.length;t++){
@@ -609,13 +609,13 @@ function plusTime(){
             plusTimeArray.push(timewords[t]);
             document.getElementsByName("label")[t+1].innerHTML=changetoTime(true,timewords[t]);
         }
-        firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title).update({"StartEndTime":plusTimeArray});
+        firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title).update({"StartEndTime":plusTimeArray});
     });
     
 }
 function minusTime(){
     var minusTimeArray=new Array();
-    firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title+"/StartEndTime").once("value").then(function(snapshot){
+    firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+"/StartEndTime").once("value").then(function(snapshot){
         var timestring=JSON.stringify(snapshot.val());
         var timewords=getsubStr(timestring).split(",");
         for(var t=0;t<timewords.length;t++){
@@ -623,7 +623,7 @@ function minusTime(){
             minusTimeArray.push(timewords[t]);
             document.getElementsByName("label")[t+1].innerHTML=changetoTime(true,timewords[t]);
         }
-        firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title).update({"StartEndTime":minusTimeArray});
+        firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title).update({"StartEndTime":minusTimeArray});
     });
     
 }
