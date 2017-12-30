@@ -43,7 +43,7 @@ window.onload=function(){
    
     buildListener();
     showdate();
-    getAccountInfo();
+    //getAccountInfo();
     elementhide();
     
     
@@ -143,8 +143,7 @@ function buildListener(){
    // greet.innerHTML="Hello，"+final_id;
     setupNewAccount.addEventListener("click",createAccount);
     confirmSetup.addEventListener("click",confirmNewAccount);
-    confirmSetting.addEventListener("click",settingConfirm);
-    //readRecordProject.addEventListener("click",readProject);
+    confirmSetting.addEventListener("click",settingConfirm);    
     settingControl.addEventListener("click",controlSetting);
     play.addEventListener("click",startrecord);
     stop.addEventListener("click",stoprecord);
@@ -462,18 +461,19 @@ function settingConfirm(){
         $("#recordchat").show("slow");
         $("#textarea").show("slow");
         $("#textoutbound").show("slow");
+        controlSetting();
         database.once('test/Subtitle/'+roomNumber+'/', function(snapshot) {
             
-            for(var i in snapshot.val()){
+        for(var i in snapshot.val()){
                 
-                string=JSON.stringify(snapshot.val()[i].record_perSentence);
+            string=JSON.stringify(snapshot.val()[i].record_perSentence);
                     
-                text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
-                textarea.append(text);
-            }
+            text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
+            textarea.append(text);
+        }
         });
-        controlSetting();
-        texttitle.textContent=title.value+"_會議記錄_"+date;
+        
+        texttitle.textContent=final_title+"_會議記錄_"+date;
         getUserTitle(final_id);
         firebase.database().ref('users/'+final_id+"/RecordTitle/"+final_title).set(
         {
@@ -485,26 +485,7 @@ function settingConfirm(){
     }
     
 }
-function readProject(){
-    var getFileOrNot=false;
-    if(checkAuth()!=true){
-        alert("尚未登入請重新登入")
-    }else if(checkTitle()){
-        getUserTitle(final_id);
-        for(var i=0;i<titleArray.length;i++){
-            if(title.value==titleArray[i]){
-                getFileOrNot=true;
-                final_title=title.value;
-                downloadName.value=final_id+"會議記錄_"+final_title+".txt";
-                $("#Remodify").trigger("click");
-                $("#showSubtitle").trigger("click");
-            }
-        }
-        if(getFileOrNot!=true)
-            alert("查無此會議記錄");
-    }
 
-}
 function controlSetting(){
     if ( display == true ) {
         settingControl.setAttribute("class","btn-radius glyphicon glyphicon-chevron-down");
@@ -677,18 +658,19 @@ function updateTimecount(id,title,timeCount){
         "RecordTime": timeCount
     });
 }
-function getAccountInfo(){
+/*function getAccountInfo(){
     idArray=new Array();
     firebase.database().ref('users').orderByChild("Aiden").on("child_added", function(snapshot) {
         idArray.push(snapshot.key);
     });
 }
-function getUserTitle(id){
-    titleArray=new Array();
-    firebase.database().ref('users/'+id+"/RecordTitle").orderByChild("Aiden").on("child_added", function(snapshot) {
-        titleArray.push(snapshot.key);
-    });
-}
+*/
+//function getUserTitle(id){
+//    titleArray=new Array();
+//    firebase.database().ref('users/'+id+"/RecordTitle").orderByChild("Aiden").on("child_added", function(snapshot) {
+//        titleArray.push(snapshot.key);
+//    });
+//}
 
 /*
          其餘method           
