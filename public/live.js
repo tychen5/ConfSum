@@ -139,7 +139,7 @@ function buildElement(){
     downloadlink=document.getElementById("downloadlink");
 }
 function buildListener(){
-    login.addEventListener("click",getAccountPermission);
+    login.addEventListener("click",SigninwithEmail);
    // greet.innerHTML="Hello，"+final_id;
     setupNewAccount.addEventListener("click",createAccount);
     confirmSetup.addEventListener("click",confirmNewAccount);
@@ -382,8 +382,8 @@ function FBSignin(){
 checkAuth();
 
 }
-function getAccountPermission(){ 
-  firebase.auth().signInWithEmailAndPassword(id.value, password.value)
+function SigninwithEmail(){ 
+  firebase.auth().signInWithEmailAndPassword(id.value.toString(), password.value.toString())
     .catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
