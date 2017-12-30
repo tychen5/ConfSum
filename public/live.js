@@ -74,7 +74,11 @@ window.onload=function(){
 function checkAuth(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            console.log("SignIn!");        
+            
+            
+            $("#BasicSetting").trigger( "click" );
+            console.log("SignIn!");
+            
             // User is signed in.
         }
         else{
@@ -326,7 +330,7 @@ function getAccountPermission(){
              $("#BasicSetting").trigger( "click" );
          }
     });
-    checkAuth();
+    
     
 }
 function createAccount(){
