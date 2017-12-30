@@ -389,7 +389,7 @@ function createAccount(){
 function confirmNewAccount(){
     if(id.value==""){
         window.alert("帳戶名稱不可為空直");
-    }else if(!checkRepeatAccount(id.value,idArray)){
+    }else if(true)){
         if(password.value=="")
             alert("密碼不能為空直");
         else if(password.value!=checkpassword.value)
@@ -416,14 +416,14 @@ function confirmNewAccount(){
     }
     
 }
-function checkRepeatAccount(id,idArray){
+/*function checkRepeatAccount(id_account,idArray){
     for(var i=0;i<idArray.length;i++){
-        if(id==idArray[i]){
+        if(id_account==idArray[i]){
             return true;
         }
     }
     return false;
-}
+}*/
 function writeUserData(id,password) {
     var d=new Date();
     var year,month,day;
@@ -667,8 +667,8 @@ function updateTimecount(id,title,timeCount){
     firebase.database().ref('users').orderByChild("Aiden").on("child_added", function(snapshot) {
         idArray.push(snapshot.key);
     });
-}
-*/
+}*/
+
 //function getUserTitle(id){
 //    titleArray=new Array();
 //    firebase.database().ref('users/'+id+"/RecordTitle").orderByChild("Aiden").on("child_added", function(snapshot) {
