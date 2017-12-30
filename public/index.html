@@ -126,10 +126,11 @@
 
 						<div id="fh5co-tab-feature-center" class="fh5co-tab text-center">
 							<ul class="resp-tabs-list hor_1">
-                                <li><i class="fh5co-tab-menu-icon ti-ruler-pencil"></i>Login</li>
-								<li id="BasicSetting"><i class="fh5co-tab-menu-icon ti-ruler-pencil"></i>Meeting</li>
-								<li id="Remodify"><i  class="fh5co-tab-menu-icon ti-paint-bucket"></i>Remodify </li>
-                                <li id="downloadlink"><i  class="fh5co-tab-menu-icon glyphicon glyphicon-save"></i>Download<li>
+                                <!--<li><i id="signupTAB" class="fh5co-tab-menu-icon ti-ruler-pencil"></i>註冊</li> -->
+                                <li><i  id="signinTAB"class="fh5co-tab-menu-icon ti-ruler-pencil"></i>登入</li>
+								<li id="BasicSetting"><i class="fh5co-tab-menu-icon ti-ruler-pencil"></i>設定會議</li>
+								<li id="Remodify"><i  class="fh5co-tab-menu-icon ti-paint-bucket"></i>訂正會議記錄</li>
+                                <li id="downloadlink"><i  class="fh5co-tab-menu-icon glyphicon glyphicon-save"></i>下載會議記錄<li>
 							</ul>
 							<div class="resp-tabs-container hor_1">
                                 <div>
@@ -148,8 +149,8 @@
                                                 <input placeholder="password" id="checkpassword" type="password" class="form-control input-lg">
                                             </p>
                                             <input type="button" id="login" class="btn btn-primary btn-lg " value="登入">
-                                            <button onclick = "FBSignin()">Facebook Signin</button>
-                                            <button onclick = "GoogleSignin()">Google Signin</button>
+                                            <button onclick = "FBSignin()" class="btn btn-primary btn-lg " id="fbSigninBTN">臉書登入</button>
+                                            <button onclick = "GoogleSignin()" class="btn btn-primary btn-lg "id="gSigninBTN">谷歌登入</button>
                                             <input type="button" id="setupNewAccount" class="btn btn-primary btn-lg " value="建立新帳號">
                                             <input type="button" id="confirmSetup" class="btn btn-primary btn-lg " value="確認">
                                             <hr>

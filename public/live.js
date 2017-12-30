@@ -38,26 +38,14 @@ window.onload=function(){
     ms = new Date().getTime()
     firebase.initializeApp(config);
     database = firebase.database().ref()
-    /*var provider = new firebase.auth.GoogleAuthProvider(); 
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = result.credential.accessToken;
-      var user = firebase.auth().currentUser;
-      // The signed-in user info.
-      //var user = result.user;
-      var user2 =user.displayName;
-        window.alert("Welcome:"+user2);
-      // ...
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-    }); */
+    firebase.auth().onAuthStateChanged(function(user){
+        if (user){
+            console.log("login!");
+        }
+        else{
+            console.log("not login yet!");
+        }
+    });
     buildListener();
     showdate();
     getAccountInfo();
@@ -93,6 +81,8 @@ window.onload=function(){
 function buildElement(){
     id=document.getElementById("id");
     password=document.getElementById("password");
+    gSigninBTN=document.getElementById("gSigninBTN");
+    fbSigninBTN=document.getElementById("fbSigninBTN");
     checkpassword=document.getElementById("checkpassword");
     login=document.getElementById("login");
     setupNewAccount=document.getElementById("setupNewAccount");
@@ -336,6 +326,8 @@ function getAccountPermission(){
 }
 function createAccount(){
     $("#recheckPassword").show("slow");
+    $("#fbSigninBTN").hide();
+    $("#gSigninBTN").hide();
     $("#setupNewAccount").hide();
     $("#confirmSetup").show();
     
