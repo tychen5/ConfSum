@@ -265,7 +265,7 @@ function readSubtitle(id_string){//讀取所有字幕
           string=JSON.stringify(snapshot.val()[i].record_perSentence);
           //timestamp=JSON.stringify(snapshot.val()[i].time);          
           text = document.createTextNode(snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+snapshot.val()[i].time+"\n");
-        $("#textarea").append('<div class="'+snapshot.val()[i].id+'"><div>'+snapshot.val()[i].time+'</div>'+snapshot.val()[i].name+' 說：'+snapshot.val()[i].record_perSentence+'</div>');
+        $index.append('<div class="'+snapshot.val()[i].id+'"><div>'+snapshot.val()[i].time+'</div>'+snapshot.val()[i].name+'說：'+snapshot.val()[i].record_perSentence+'</div>');
                 
           
         }
@@ -463,9 +463,9 @@ function settingConfirm(){
         $("#textarea").show("slow");
         $("#textoutbound").show("slow");
         database.once('test/Subtitle/'+roomNumber+'/', function(snapshot) {
-        $("#textarea").value='';
+        $index.html('');
             for(var i in snapshot.val()){
-                $("#textarea").append('<div><div>'+snapshot.val()[i].time+'</div>'+snapshot.val()[i].name+' 說：'+snapshot.val()[i].record_perSentence+'</div>');
+                $index.append('<div><div>'+snapshot.val()[i].time+'</div>'+snapshot.val()[i].name+' 說：'+snapshot.val()[i].record_perSentence+'</div>');
             }
         });
         controlSetting();
