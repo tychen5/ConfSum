@@ -248,7 +248,7 @@ function readSubtitle(id_string){//讀取所有字幕
           string=JSON.stringify(snapshot.val()[i].record_perSentence);
           timestamp=JSON.stringify(snapshot.val()[i].time);
           //textarea.append('<span>'+snapshot.val()[i].id+'說：'+string+","+snapshot.val()[i].time+'</span><br/>');
-          text = document.createTextNode(name.substr(1,string.length-2)+"說:"+string.substr(1,string.length-2)+timestamp.substr(1,string.length-2)+"\n");
+          text = document.createTextNode(snapshot.val()[i].id+"說:"+string.substr(1,string.length-2)+snapshot.val()[i].time+"\n");
           textarea.append(text);
                 
           
