@@ -372,7 +372,7 @@ function SignInWithMail(){
   console.log(error);
   });
   checkAuth();
-  final_id=biguser.displayName;
+  final_id=biguser_name;
   final_password=password.value;
   greet.innerHTML="Hello，"+final_id;
   loginorNot=true;
@@ -653,7 +653,7 @@ function updateRealtimeSubtitle(id,title,realtimeSubtitle) {
     });
 }
 function updateTime(id,title,time){//跟新目前錄音時間
-    firebase.database().ref('users/'+id+"/RecordTitle/"+title).update({
+    firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+title).update({
         "StartEndTime":time
     });
 }
