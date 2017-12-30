@@ -7,7 +7,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Subtitler轉譯寶&mdash;SDM Group03</title>
+	<title>Subtitler&mdash;SDM Group03</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -127,32 +127,32 @@
 						<div id="fh5co-tab-feature-center" class="fh5co-tab text-center">
 							<ul class="resp-tabs-list hor_1">
                                 <!--<li><i id="signupTAB" class="fh5co-tab-menu-icon ti-ruler-pencil"></i>註冊</li> -->
-                                <li id="signinTAB"><i class="fh5co-tab-menu-icon ti-ruler-pencil"></i>登入</li>
-								<li id="BasicSetting"><i class="fh5co-tab-menu-icon ti-ruler-pencil"></i>設定會議</li>
-								<li id="Remodify"><i  class="fh5co-tab-menu-icon ti-paint-bucket"></i>訂正會議記錄</li>
-                                <li id="downloadlink"><i  class="fh5co-tab-menu-icon glyphicon glyphicon-save"></i>下載會議記錄<li>
+                                <li id="signinTAB"><i class="fh5co-tab-menu-icon ti-ruler-pencil"></i>Login</li>
+								<li id="BasicSetting"><i class="fh5co-tab-menu-icon ti-ruler-pencil"></i>Meeting Settings</li>
+								<li id="Remodify"><i  class="fh5co-tab-menu-icon ti-paint-bucket"></i>Modify Meeting Records</li>
+                                <li id="downloadlink"><i  class="fh5co-tab-menu-icon glyphicon glyphicon-save"></i>Download Meeting Records<li>
 							</ul>
 							<div class="resp-tabs-container hor_1">
                                 <div>
                                     <div class="row">
                                         <div class="col-md-12">
-											<h1 class="h3">登入</h1>
+											<h1 class="h3">Login</h1>
 										</div>
                                         <div class="col-md-6" >
-											<p>帳號:
-                                                <input placeholder="電子郵件帳號" id="account" type="text" class="form-control input-lg">
+											<p>Account:
+                                                <input placeholder="E-mail Address" id="account" type="text" class="form-control input-lg">
                                             </p>
-                                            <p>密碼:
-                                                <input placeholder="密碼" id="password" type="password" class="form-control input-lg">
+                                            <p>Password:
+                                                <input placeholder="Password" id="password" type="password" class="form-control input-lg">
                                             </p>
-                                            <p id="recheckPassword">確認密碼:
+                                            <p id="recheckPassword">Recheck Password:
                                                 <input placeholder="password" id="checkpassword" type="password" class="form-control input-lg">
                                             </p>
-                                            <input type="button" id="login" class="btn btn-primary btn-lg " value="登入">
-                                            <button onclick = "FBSignin()" class="btn btn-primary btn-lg " id="fbSigninBTN">臉書登入</button>
-                                            <button onclick = "GoogleSignin()" class="btn btn-primary btn-lg "id="gSigninBTN">谷歌登入</button>
-                                            <input type="button" id="setupNewAccount" class="btn btn-primary btn-lg " value="建立新帳號">
-                                            <input type="button" id="confirmSetup" class="btn btn-primary btn-lg " value="確認">
+                                            <input type="button" id="login" class="btn btn-primary btn-lg " value="Login">
+                                            <button onclick = "FBSignin()" class="btn btn-primary btn-lg " id="fbSigninBTN">Facebook Login</button>
+                                            <button onclick = "GoogleSignin()" class="btn btn-primary btn-lg "id="gSigninBTN">Google Login</button>
+                                            <input type="button" id="setupNewAccount" class="btn btn-primary btn-lg " value="Sign up new account">
+                                            <input type="button" id="confirmSetup" class="btn btn-primary btn-lg " value="Confirm">
                                             <hr>
 										</div>
                                     </div>
@@ -160,44 +160,39 @@
 								<div>
 									<div class="row">
 										<div class="col-md-12">
-<<<<<<< HEAD
-											<h1 class="h3"  id="greet">Hello，</h1>
-                                                <button onclick = "Signout()" class="btn btn-primary btn-lg " id="signoutBTN">登出轉譯寶</button>
-=======
-											<h1 class="h3" id="greet">哈囉，</h1>
-<button onclick = "Signout()">轉譯寶登出</button>
->>>>>>> 27e9a6481e32aaa5d4f6cb06bba2c385d866cb3b
-                                            <p id="mydate">今日日期:
+											<h1 class="h3" id="greet">Hello,</h1>
+<button onclick = "Signout()">Logout</button>
+                                            <p id="mydate">Date:
                                             </p>
 										</div>
 										<div id="setting" class="col-md-6">
                                             <div>
-                                                <p>會議名稱: 
+                                                <p>Meeting Name: 
                                                     <input placeholder="Meeting Name" id="titleInput" type="text" class="form-control input-lg">
                                                 </p>
                                             </div>
                                             <div>
-                                                <p>會議室編號: 
+                                                <p>Room Number: 
                                                     <input placeholder="Room Number" id="roomnumberInput" type="text" class="form-control input-lg">
                                                 </p>
                                             </div>
                                             <div>
-                                                <p>會議目標: 
+                                                <p>Meeting Goals: 
                                                     <input placeholder="Meeting Goals" id="meetinggoalInput" type="text" class="form-control input-lg">
                                                 </p>
                                             </div>
                                             <div>
-                                                <p>請選擇語言:
+                                                <p>Please Select:
                                                 <select id="lang" class="form-control input-lg" id="lang">
-                                                    <option value="cmn-Hant-TW" selected>中文</option>
-									                <option value="en-US">英文</option>
-                                                    <option value="ja">日文</option>
+                                                    <option value="cmn-Hant-TW" selected>Chinese</option>
+									                <option value="en-US">English</option>
+                                                    <option value="ja">Japanese</option>
 									            </select>
                                             </p>
                                             </div>
-                                            <input type="button" id="confirmSetting" class="btn btn-primary btn-lg " value="建立會議">
+                                            <input type="button" id="confirmSetting" class="btn btn-primary btn-lg " value="Establish">
                                             
-                                             
+                                            
                                         </div>
                                         <div class="col-md-12" align="center">
                                             <button id="settingControl" class="btn-radius glyphicon glyphicon-chevron-up"></button>
@@ -205,12 +200,12 @@
                                         </div>
                                         <div id="record" class="col-md-6">
                                             <div>
-                                                <p>開始錄音: 
+                                                <p>Start Recording: 
                                                     <input placeholder="字幕顯示區" id="inputText" type="text" class="form-control input-lg">
                                                     
                                                 </p>
-								                <button type="button" class="btn btn-info btn-sm" id="play">開始</button>
-                                                <button type="button" class="btn btn-outline btn-sm" id="stop">停止</button>
+								                <button type="button" class="btn btn-info btn-sm" id="play">START</button>
+                                                <button type="button" class="btn btn-outline btn-sm" id="stop">STOP</button>
                                                 <label id="timelabel" class="btn">00:00:00.000</label>
                                                 <!--
                                                 <input type="button" id="readRecordProject" class="btn btn-primary btn-lg " value="存取會議記錄">
@@ -241,12 +236,12 @@
 								<div>
 									<div class="row">
 										<div class="col-md-12">
-											<h2 class="h3">筆記訂正</h2>
+											<h2 class="h3">Modify Notes</h2>
 										</div>
 										<div class="col-md-6">
                                             <div>
-                                                <button id="showSubtitle" class="btn btn-primary">讀取檔案</button>
-                                                <button id="saveSubtitle" class="btn btn-outline">儲存檔案</button>
+                                                <button id="showSubtitle" class="btn btn-primary">Read File</button>
+                                                <button id="saveSubtitle" class="btn btn-outline">Save File</button>
                                                 <button id="plusTime" class="glyphicon glyphicon-plus btn-radius"></button>
                                                 <button id="minusTime" class="glyphicon glyphicon-minus btn-radius"></button>
                                             </div>
@@ -259,7 +254,7 @@
 									</div>
 								</div>
                                 <div id="downloadpage">
-                                    檔案名稱:<input id="downloadName" type="text" value="test.srt" style="border: none" readonly><br><br>
+                                    File Name:<input id="downloadName" type="text" value="test.srt" style="border: none" readonly><br><br>
                                     <textarea id="downloadText" style="width:100%;height:300px" readonly></textarea><br>
                                 </div>
 							</div>

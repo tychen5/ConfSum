@@ -265,6 +265,9 @@ function readSubtitle(id_string){//讀取所有字幕
                     
           text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
           textarea.append(text);
+            if(textarea.selectionStart == textarea.selectionEnd) {
+      textarea.scrollTop = textarea.scrollHeight;
+   }
                 
           
         }
