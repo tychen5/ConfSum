@@ -209,7 +209,7 @@ function onresult(event){
             updateRealtimeSubtitle(biguser_name,final_title,final_transcript);
             updateSubtitle(biguser_name,final_title,subArray);
             var postData = {
-                            name:biguser_name,
+                            name:firebase.auth().currentUser.displayName,
                             id:biguser_uid,
                             title:final_title,
                             time:timing,
