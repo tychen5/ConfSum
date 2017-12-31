@@ -20,7 +20,7 @@ var display=true,titleArray;
 var showSubtitle,saveSubtitle,plus,minus;
 var set_meeting_btn;
 //Download Page Element
-var downloadName,downloadText;
+var downloadName,downloadText,multiLinguoBTN;
 //Content Bar item
 var BasicSetting,Remodify;
 var roomNumber;
@@ -125,7 +125,7 @@ function buildElement(){
     play=document.getElementById("play");
     stop=document.getElementById("stop");
     timelabel=document.getElementById("timelabel");
-    
+    multiLinguoBTN=document.getElementById("multiLinguoBTN");
     showSubtitle=document.getElementById("showSubtitle");
     saveSubtitle=document.getElementById("saveSubtitle");
     plus=document.getElementById("plusTime");
@@ -154,6 +154,7 @@ function buildListener(){
     Remodify.addEventListener("click",recover);
     gSigninBTN.addEventListener("click",GoogleSignin);
     fbSigninBTN.addEventListener("click",FBSignin);
+    multiLinguoBTN.addEventListener("click",multiLinguo);
 }
 function elementhide(){
     $("#record").hide();
@@ -281,12 +282,12 @@ function readSubtitle(id_string){//讀取所有字幕
 
 function stoprecord(event){
     if(recognizing){
-        /*
+        
         clearInterval(interval);
         updateTimecount(final_id,final_title,timeCount*100);
         timeCount=0;
         timelabel.innerHTML="00:00:00,000";
-        */
+        
         recognition.stop();
     }
 }
@@ -738,6 +739,15 @@ function checkSession(){
         return false;
     }
     return true;
+}
+function multiLinguo(){
+    
+    if(location.href=='index.html'){
+        window.location.assign('index_en.html');
+    }else{
+        window.location.assign('index.html');
+    }
+    
 }
 /*
 function getTranslateResponse(context){
