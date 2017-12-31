@@ -256,7 +256,7 @@ function startrecord(event){
             timelabel.innerHTML=changetoTime(false,timeCount*100);
         },100);       
     }
-    readSubtitle();
+    
 }
 function readSubtitle(){//讀取所有字幕
     var len;
@@ -264,11 +264,11 @@ function readSubtitle(){//讀取所有字幕
     var string;    
     //allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
     allsubref = firebase.database().ref('test/Subtitle/'+roomNumber);
-    allsubref.limitToLast(1).on('child_added',function(data){        
-       for(var i in data.val){
+    allsubref.limitToLast(1).on('child_changed',function(data){        
+       for(var i in data.val()){
               
         //console.log("這是console.log:"+i.name+".id");
-        len = data.val.length;
+        console.log("這是len:"+data.val().length);
         string=JSON.stringify(data.val()[i].record_perSentence);
                     
         text = document.createTextNode(data.val()[i].time+data.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
@@ -478,6 +478,7 @@ function settingConfirm(){
         $("#textarea").show("slow");
         $("#textoutbound").show("slow");
         controlSetting();
+        readSubtitle();
        /* previoussubref=firebase.database().ref('test/Subtitle/'+roomNumber);
         previoussubref.once('value', function(snapshot) {
             
