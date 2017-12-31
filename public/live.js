@@ -78,8 +78,8 @@ window.onload=function(){
 function checkAuth(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            
-            
+            $("#multiLinguoBTN_en").hide();
+            $("#multiLinguoBTN").hide();
             $("#BasicSetting").trigger( "click" );
             console.log("登入成功");
             return true;
@@ -252,6 +252,7 @@ function startrecord(event){
     }
 }
 function readSubtitle(id_string){//讀取所有字幕
+    textarea="";
     var text;
     var string;
     var name;
@@ -297,6 +298,8 @@ function Signout() {
    firebase.auth().signOut().then(function() {
       window.alert('Subtitler Signout Succesfull');
       $("#signinTAB").trigger("click");
+       $("#multiLinguoBTN").show();
+       $("#multiLinguoBTN_en").show();
    }, function(error) {
       console.log('Signout Failed')  
    });
@@ -385,6 +388,7 @@ function SignInWithMail(){
 function createAccount(){
     $("#recheckPassword").show("slow");
     $("#fbSigninBTN").hide();
+    
     $("#gSigninBTN").hide();
     $("#setupNewAccount").hide();
     $("#confirmSetup").show();
