@@ -75,29 +75,7 @@ window.onload=function(){
     });
       */  
 }
-var len;
-    var text;
-    var string;    
-    //allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
-    allsubref = firebase.database().ref('test/Subtitle/'+roomNumber);
-    allsubref.limitToLast(1).on('value',function(snapshot){        
-       for(var i in snapshot.val()){
-              
-        //console.log("這是console.log:"+i.name+".id");
-        //console.log("這是len:"+snapshot.val().length);
-        string=JSON.stringify(snapshot.val()[i].record_perSentence);                    
-        text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
-        textarea.append(text);
-        if(textarea.selectionStart == textarea.selectionEnd) {
-            textarea.scrollTop = textarea.scrollHeight;
-        }
-       }
-          
-        
-        console.log("這是console.log(textarea.value):"+textarea.value);
-        console.log("這是console.log(text):"+text);
-        
-    });
+
 function checkAuth(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -278,10 +256,11 @@ function startrecord(event){
             timeCount++;
             timelabel.innerHTML=changetoTime(false,timeCount*100);
         },100);
+        
     }
-    
+    readSubtitle();
 }
-/*function readSubtitle(event){//讀取所有字幕
+function readSubtitle(){//讀取所有字幕
     var len;
     var text;
     var string;    
@@ -308,7 +287,7 @@ function startrecord(event){
     
     
 }
-*/
+
 
 function stoprecord(event){
     if(recognizing){
@@ -317,7 +296,7 @@ function stoprecord(event){
         updateTimecount(final_id,final_title,timeCount*100);
         timeCount=0;
         timelabel.innerHTML="00:00:00,000";
-        
+        allsubref.off();
         recognition.stop();
     }
 }
