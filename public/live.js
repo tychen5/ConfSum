@@ -254,39 +254,33 @@ function startrecord(event){
         interval=setInterval(function(){
             timeCount++;
             timelabel.innerHTML=changetoTime(false,timeCount*100);
-        },100);
-        
-        readSubtitle();
+        },100);       
     }
+    readSubtitle();
 }
 function readSubtitle(){//讀取所有字幕
-    
+    var len;
     var text;
-    var string;
-    var name;
-    var timestamp;
+    var string;    
     //allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
     allsubref = firebase.database().ref('test/Subtitle/'+roomNumber);
     allsubref.limitToLast(1).on('value',function(snapshot){        
-      for(var i in snapshot.val()){
-          
+      
               
         //console.log("這是console.log:"+i.name+".id");
-        
-        string=JSON.stringify(snapshot.val()[i].record_perSentence);
+        len = snapshot.val.length;
+        string=JSON.stringify(snapshot.val()[len].record_perSentence);
                     
-        /*text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
-        textarea.value+=text.value.toString();*/
-          text = JSON.stringify(snapshot.val()[i].time)+JSON.stringify(snapshot.val()[i].name)+"說:"+string.substr(1,string.length-2)+"\n";
-          textarea.value+=text;
+        text = document.createTextNode(snapshot.val()[len].time+snapshot.val()[len].name+"說:"+string.substr(1,string.length-2)+"\n");
+        textarea.append(text);
         if(textarea.selectionStart == textarea.selectionEnd) {
             textarea.scrollTop = textarea.scrollHeight;
         }
                 
           
-        }
+        
         console.log("這是console.log(textarea.value):"+textarea.value);
-        console.log("這是console.log(text):"+text.value);
+        console.log("這是console.log(text):"+text);
         
     });
     
