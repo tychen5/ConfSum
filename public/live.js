@@ -275,8 +275,10 @@ function readSubtitle(){//讀取所有字幕
         
         string=JSON.stringify(snapshot.val()[i].record_perSentence);
                     
-        text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
-        textarea.value+=text.value.toString();
+        /*text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
+        textarea.value+=text.value.toString();*/
+          text = JSON.stringify(snapshot.val()[i].time)+JSON.stringify(snapshot.val()[i].name)+"說:"+string.substr(1,string.length-2)+"\n";
+          textarea.value+=text;
         if(textarea.selectionStart == textarea.selectionEnd) {
             textarea.scrollTop = textarea.scrollHeight;
         }
@@ -284,7 +286,7 @@ function readSubtitle(){//讀取所有字幕
           
         }
         console.log("這是console.log(textarea.value):"+textarea.value);
-        console.log("這是console.log(text):"+text.value.toString());
+        console.log("這是console.log(text):"+text.value);
         
     });
     
