@@ -62,7 +62,7 @@ window.onload=function(){
     recognition.onerror= onerror;
     recognition.onresult = onresult;
     checkAuth();
-    readSubtitle();
+    
     /*
     var text;
     var string;
