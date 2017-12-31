@@ -264,14 +264,14 @@ function readSubtitle(){//讀取所有字幕
     var string;    
     //allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
     allsubref = firebase.database().ref('test/Subtitle/'+roomNumber);
-    allsubref.limitToLast(1).on('child_changed',function(data){        
-       for(var i in data.val()){
+    allsubref.limitToLast(1).on('value',function(snapshot){        
+       for(var i in snapshot.val()){
               
         //console.log("這是console.log:"+i.name+".id");
-        console.log("這是len:"+data.val().length);
-        string=JSON.stringify(data.val()[i].record_perSentence);
+        console.log("這是len:"+snapshot.val().length);
+        string=JSON.stringify(snapshot.val()[i].record_perSentence);
                     
-        text = document.createTextNode(data.val()[i].time+data.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
+        text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
         textarea.append(text);
         if(textarea.selectionStart == textarea.selectionEnd) {
             textarea.scrollTop = textarea.scrollHeight;
