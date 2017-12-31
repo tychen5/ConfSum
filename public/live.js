@@ -256,10 +256,10 @@ function startrecord(event){
             timelabel.innerHTML=changetoTime(false,timeCount*100);
         },100);
         
-        readSubtitle(biguser_name);
+        readSubtitle();
     }
 }
-function readSubtitle(id_string){//讀取所有字幕
+function readSubtitle(){//讀取所有字幕
     
     var text;
     var string;
@@ -284,6 +284,7 @@ function readSubtitle(id_string){//讀取所有字幕
           
         }
         console.log("這是console.log(textarea.value):"+textarea.value);
+        console.log("這是console.log(text):"+text);
         
     });
     
@@ -293,7 +294,7 @@ function readSubtitle(id_string){//讀取所有字幕
 
 function stoprecord(event){
     if(recognizing){
-        textarea.value='';
+        
         clearInterval(interval);
         updateTimecount(final_id,final_title,timeCount*100);
         timeCount=0;
@@ -481,7 +482,7 @@ function settingConfirm(){
         $("#textarea").show("slow");
         $("#textoutbound").show("slow");
         controlSetting();
-        previoussubref=firebase.database().ref('test/Subtitle/'+roomNumber);
+       /* previoussubref=firebase.database().ref('test/Subtitle/'+roomNumber);
         previoussubref.once('value', function(snapshot) {
             
         for(var i in snapshot.val()){
@@ -491,7 +492,7 @@ function settingConfirm(){
             text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
             textarea.append(text);
         }
-        });
+        });*/
         
         texttitle.textContent=final_title+"_會議記錄_"+date;
         //getUserTitle(final_id);
