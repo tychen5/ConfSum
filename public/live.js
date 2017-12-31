@@ -99,7 +99,15 @@ function makeUser(){
     console.log(biguser_name+"_3333_"+biguser_uid);
     biguser_photoUrl = biguser.photoURL;
     biguser_emailVerified = biguser.emailVerified;
-    
+    if (biguser != null) {
+    biguser.providerData.forEach(function (profile) {
+    console.log("Sign-in provider: " + profile.providerId);
+    console.log("  Provider-specific UID: " + profile.uid);
+    console.log("  Name: " + profile.displayName);
+    console.log("  Email: " + profile.email);
+    console.log("  Photo URL: " + profile.photoURL);
+  });
+}
 }
 function buildElement(){
     id=document.getElementById("account");
@@ -252,7 +260,7 @@ function startrecord(event){
     }
 }
 function readSubtitle(id_string){//讀取所有字幕
-    textarea="";
+    
     var text;
     var string;
     var name;
