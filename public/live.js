@@ -93,13 +93,8 @@ function checkAuth(){
 }
 function makeUser(){
     biguser = firebase.auth().currentUser;
-    if(biguser.displayName.value==null || biguser.uid.value==null){
-        biguser_name=id.value.toString();
-        biguser_uid=id.value.toString();
-    }else{
-        biguser_name = biguser.displayName;
-        biguser_uid = biguser.uid;    
-    }    
+    biguser_name = biguser.displayName;
+    biguser_uid = biguser.uid;            
     biguser_email = biguser.email;
     console.log(biguser_name+"_3333_"+biguser_uid);
     biguser_photoUrl = biguser.photoURL;
