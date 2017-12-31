@@ -504,7 +504,8 @@ function controlSetting(){
     }
 }
 function showsub(){
-    if(checkAuth()!=true){
+   // if(checkAuth()!=true){
+if(false){
         alert("尚未登入請重新登入")
     }
     else{    
