@@ -741,13 +741,9 @@ function checkSession(){
     }
     return true;
 }
-function multiLinguo(){
+function multiLinguo(){    
     
-    if(location.href=='index.html'){
-        window.location.assign('index_en.html');
-    }else if(location.href=='index_en.html'){
-        window.location.assign('index.html');
-    }
+    window.location.assign('index_en.html');        
     
 }
 /*
