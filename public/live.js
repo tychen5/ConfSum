@@ -293,7 +293,7 @@ function readSubtitle(id_string){//讀取所有字幕
 
 function stoprecord(event){
     if(recognizing){
-        
+        textarea.value='';
         clearInterval(interval);
         updateTimecount(final_id,final_title,timeCount*100);
         timeCount=0;
