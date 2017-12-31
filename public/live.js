@@ -62,7 +62,7 @@ window.onload=function(){
     recognition.onerror= onerror;
     recognition.onresult = onresult;
     checkAuth();
-    
+    readSubtitle();
     /*
     var text;
     var string;
@@ -258,7 +258,7 @@ function startrecord(event){
     }
     
 }
-function readSubtitle(){//讀取所有字幕
+function readSubtitle(event){//讀取所有字幕
     var len;
     var text;
     var string;    
@@ -268,7 +268,7 @@ function readSubtitle(){//讀取所有字幕
        for(var i in snapshot.val()){
               
         //console.log("這是console.log:"+i.name+".id");
-        console.log("這是len:"+snapshot.val().length);
+        //console.log("這是len:"+snapshot.val().length);
         string=JSON.stringify(snapshot.val()[i].record_perSentence);
                     
         text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
@@ -478,7 +478,7 @@ function settingConfirm(){
         $("#textarea").show("slow");
         $("#textoutbound").show("slow");
         controlSetting();
-        readSubtitle();
+       
        /* previoussubref=firebase.database().ref('test/Subtitle/'+roomNumber);
         previoussubref.once('value', function(snapshot) {
             
