@@ -35,6 +35,7 @@ var final_id="",final_password="",final_title="";
 var biguser;
 var biguser_name, biguser_email, biguser_photoUrl, biguser_uid, biguser_emailVerified;
 window.onload=function(){
+    
     //window.location.assign('loginPage.html');
     buildElement();
     ms = new Date().getTime()
@@ -124,8 +125,7 @@ function buildElement(){
     textarea2=document.getElementById("textarea2");
     play=document.getElementById("play");
     stop=document.getElementById("stop");
-    timelabel=document.getElementById("timelabel");
-    multiLinguoBTN=document.getElementById("multiLinguoBTN");
+    timelabel=document.getElementById("timelabel");    
     showSubtitle=document.getElementById("showSubtitle");
     saveSubtitle=document.getElementById("saveSubtitle");
     plus=document.getElementById("plusTime");
@@ -154,7 +154,7 @@ function buildListener(){
     Remodify.addEventListener("click",recover);
     gSigninBTN.addEventListener("click",GoogleSignin);
     fbSigninBTN.addEventListener("click",FBSignin);
-    multiLinguoBTN.addEventListener("click",multiLinguo);
+    
 }
 function elementhide(){
     $("#record").hide();
@@ -744,7 +744,7 @@ function multiLinguo(){
     
     if(location.href=='index.html'){
         window.location.assign('index_en.html');
-    }else{
+    }else if(location.href=='index_en.html'){
         window.location.assign('index.html');
     }
     
