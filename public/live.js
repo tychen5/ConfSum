@@ -20,7 +20,7 @@ var display=true,titleArray;
 var showSubtitle,saveSubtitle,plus,minus;
 var set_meeting_btn;
 //Download Page Element
-var downloadName,downloadText,multiLinguoBTN;
+var downloadName,downloadText;
 //Content Bar item
 var BasicSetting,Remodify;
 var roomNumber;
@@ -93,11 +93,18 @@ function checkAuth(){
 }
 function makeUser(){
     biguser = firebase.auth().currentUser;
-    biguser_name = biguser.displayName;    
+    if(biguser.displayName.value==null || biguser.uid.value==null){
+        biguser_name=id.value.toString();
+        biguser_uid=id.value.toString();
+    }else{
+        biguser_name = biguser.displayName;
+        biguser_uid = biguser.uid;    
+    }    
     biguser_email = biguser.email;
+    console.log(biguser_name+"_3333_"+biguser_uid);
     biguser_photoUrl = biguser.photoURL;
     biguser_emailVerified = biguser.emailVerified;
-    biguser_uid = biguser.uid;
+    
 }
 function buildElement(){
     id=document.getElementById("account");
@@ -140,7 +147,7 @@ function buildElement(){
 }
 function buildListener(){
     login.addEventListener("click",SignInWithMail);
-   // greet.innerHTML="Hello，"+final_id;
+    greet.innerHTML="Hello，"+biguser_name;
     setupNewAccount.addEventListener("click",createAccount);
     confirmSetup.addEventListener("click",confirmNewAccount);
     confirmSetting.addEventListener("click",settingConfirm);    
@@ -745,6 +752,9 @@ function multiLinguo(){
     
     window.location.assign('index_en.html');        
     
+}
+function multiLLL(){
+    window.location.assign('index.html');
 }
 /*
 function getTranslateResponse(context){
