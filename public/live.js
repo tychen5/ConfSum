@@ -460,7 +460,7 @@ function settingConfirm(){
         day=d.getDate();
         var date=""+year+"/"+month+"/"+day;
         final_title=title.value;
-        downloadName.value=biguser_name+"會議記錄_"+final_title+".txt";
+        downloadName.value=biguser_name+"Note_"+final_title+".txt";
         recognition.lang=lang.value;
         $("#record").show("slow");
         $("#recordchat").show("slow");
