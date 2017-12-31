@@ -265,18 +265,18 @@ function readSubtitle(){//讀取所有字幕
     //allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
     allsubref = firebase.database().ref('test/Subtitle/'+roomNumber);
     allsubref.limitToLast(1).on('child_added',function(data){        
-      
+       for(var i in data.val){
               
         //console.log("這是console.log:"+i.name+".id");
         len = data.val.length;
-        string=JSON.stringify(data.val()[len].record_perSentence);
+        string=JSON.stringify(data.val()[i].record_perSentence);
                     
-        text = document.createTextNode(data.val()[len].time+data.val()[len].name+"說:"+string.substr(1,string.length-2)+"\n");
+        text = document.createTextNode(data.val()[i].time+data.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
         textarea.append(text);
         if(textarea.selectionStart == textarea.selectionEnd) {
             textarea.scrollTop = textarea.scrollHeight;
         }
-                
+       }
           
         
         console.log("這是console.log(textarea.value):"+textarea.value);
