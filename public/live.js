@@ -254,9 +254,9 @@ function startrecord(event){
         interval=setInterval(function(){
             timeCount++;
             timelabel.innerHTML=changetoTime(false,timeCount*100);
-        },100);       
+        },100);
     }
-    
+    readSubtitle();
 }
 function readSubtitle(event){//讀取所有字幕
     var len;
@@ -269,8 +269,7 @@ function readSubtitle(event){//讀取所有字幕
               
         //console.log("這是console.log:"+i.name+".id");
         //console.log("這是len:"+snapshot.val().length);
-        string=JSON.stringify(snapshot.val()[i].record_perSentence);
-                    
+        string=JSON.stringify(snapshot.val()[i].record_perSentence);                    
         text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
         textarea.append(text);
         if(textarea.selectionStart == textarea.selectionEnd) {
