@@ -33,6 +33,7 @@ var database,ms;
 //確認後的各項變數
 var final_id="",final_password="",final_title="";
 var biguser;
+var ddate;
 var biguser_name, biguser_email, biguser_photoUrl, biguser_uid, biguser_emailVerified;
 window.onload=function(){
     
@@ -75,11 +76,12 @@ window.onload=function(){
     });
       */  
 }
+
 function checkAuth(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            
-            
+            $("#multiLinguoBTN_en").hide();
+            $("#multiLinguoBTN").hide();
             $("#BasicSetting").trigger( "click" );
             console.log("登入成功");
             return true;
@@ -96,10 +98,18 @@ function makeUser(){
     biguser_name = biguser.displayName;
     biguser_uid = biguser.uid;            
     biguser_email = biguser.email;
-    console.log(biguser_name+"_3333_"+biguser_uid);
+    //console.log(biguser_name+"_3333_"+biguser_uid);
     biguser_photoUrl = biguser.photoURL;
     biguser_emailVerified = biguser.emailVerified;
-    
+    if (biguser != null) {
+    biguser.providerData.forEach(function (profile) {
+    console.log("Sign-in provider: " + profile.providerId);
+    //console.log("  Provider-specific UID: " + profile.uid);
+    console.log("  Name: " + profile.displayName);
+    console.log("  Email: " + profile.email);
+    console.log("  Photo URL: " + profile.photoURL);
+  });
+}
 }
 function buildElement(){
     id=document.getElementById("account");
@@ -213,7 +223,7 @@ function onresult(event){
             updateSubtitle(biguser_name,final_title,subArray);
             var postData = {
                             name:firebase.auth().currentUser.displayName,
-                            id:biguser_uid,
+                            id:biguser_uid,                            
                             title:final_title,
                             time:timing,
                             record_perSentence:subArray[subArray.length-1]
@@ -240,41 +250,51 @@ function onresult(event){
 /*
        以下為Listener的各類method            
                                     */
+function enterRoom(){
+    
+        roomNumber=$("#RoomNumber_Enter").value;
+        console.log(roomNumber);
+        $("#record").show("slow");
+        $("#recordchat").show("slow");
+        $("#textarea").show("slow");
+        $("#textoutbound").show("slow");
+        controlSetting();        
+        startrecord();
+   
+}
 function startrecord(event){
     if(!recognizing&&checkTitle()){
         recognition.start();
         interval=setInterval(function(){
             timeCount++;
-            timelabel.innerHTML=changetoTime(false,timeCount*100);
+            timelabel.innerHTML= changetoTime(false,timeCount*100);
         },100);
         
-        readSubtitle(biguser_name);
     }
+    readSubtitle();
 }
-function readSubtitle(id_string){//讀取所有字幕
+function readSubtitle(){//讀取所有字幕
+    var len;
     var text;
-    var string;
-    var name;
-    var timestamp;
+    var string;    
     //allsubref = firebase.database().ref('users/'+id_string+"/RecordTitle/"+final_title+'/Subtitle');
     allsubref = firebase.database().ref('test/Subtitle/'+roomNumber);
     allsubref.limitToLast(1).on('value',function(snapshot){        
-      for(var i in snapshot.val()){
-          
+       for(var i in snapshot.val()){
               
         //console.log("這是console.log:"+i.name+".id");
-        
-        string=JSON.stringify(snapshot.val()[i].record_perSentence);
-                    
+        //console.log("這是len:"+snapshot.val().length);
+        string=JSON.stringify(snapshot.val()[i].record_perSentence);                    
         text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
         textarea.append(text);
         if(textarea.selectionStart == textarea.selectionEnd) {
             textarea.scrollTop = textarea.scrollHeight;
         }
-                
+       }
           
-        }
+        
         console.log("這是console.log(textarea.value):"+textarea.value);
+        console.log("這是console.log(text):"+text);
         
     });
     
@@ -289,7 +309,7 @@ function stoprecord(event){
         updateTimecount(final_id,final_title,timeCount*100);
         timeCount=0;
         timelabel.innerHTML="00:00:00,000";
-        
+        allsubref.off();
         recognition.stop();
     }
 }
@@ -297,6 +317,8 @@ function Signout() {
    firebase.auth().signOut().then(function() {
       window.alert('Subtitler Signout Succesfull');
       $("#signinTAB").trigger("click");
+       $("#multiLinguoBTN").show();
+       $("#multiLinguoBTN_en").show();
    }, function(error) {
       console.log('Signout Failed')  
    });
@@ -326,8 +348,9 @@ function GoogleSignin(){
       var credential = error.credential;
       // ...
     });
-    checkAuth();
-
+    checkAuth()
+    
+    
 
 }
 
@@ -374,8 +397,10 @@ function SignInWithMail(){
   }
   console.log(error);
   });
-  makeUser();
-  checkAuth();
+  makeUser();    
+  if(checkAuth()){
+      $("#BasicSetting").trigger( "click" );
+  }
   //final_id=biguser_name;
   final_password=password.value;
   greet.innerHTML="Hello，"+biguser_name;
@@ -385,6 +410,7 @@ function SignInWithMail(){
 function createAccount(){
     $("#recheckPassword").show("slow");
     $("#fbSigninBTN").hide();
+    
     $("#gSigninBTN").hide();
     $("#setupNewAccount").hide();
     $("#confirmSetup").show();
@@ -461,15 +487,17 @@ function settingConfirm(){
         month=d.getMonth()+1;
         day=d.getDate();
         var date=""+year+"/"+month+"/"+day;
+        ddate =""+year+"_"+month+"_"+day;
         final_title=title.value;
-        downloadName.value=biguser_name+"Note_"+final_title+".txt";
+        downloadName.value=ddate+"Note-"+final_title+".txt";
         recognition.lang=lang.value;
         $("#record").show("slow");
         $("#recordchat").show("slow");
         $("#textarea").show("slow");
         $("#textoutbound").show("slow");
         controlSetting();
-        previoussubref=firebase.database().ref('test/Subtitle/'+roomNumber);
+       
+       /* previoussubref=firebase.database().ref('test/Subtitle/'+roomNumber);
         previoussubref.once('value', function(snapshot) {
             
         for(var i in snapshot.val()){
@@ -479,7 +507,7 @@ function settingConfirm(){
             text = document.createTextNode(snapshot.val()[i].time+snapshot.val()[i].name+"說:"+string.substr(1,string.length-2)+"\n");
             textarea.append(text);
         }
-        });
+        });*/
         
         texttitle.textContent=final_title+"_會議記錄_"+date;
         //getUserTitle(final_id);
@@ -516,7 +544,7 @@ if(false){
         $("#plusTime").show();
         $("#minusTime").show();
         var text="";
-        var firsttime=0;
+        var firsttime=true;
         subRef = firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/Subtitle'); //這邊可要改~~~
         timeRef=firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/StartEndTime'); //不然會抓不到字幕QQ
     
@@ -552,15 +580,19 @@ if(false){
                     input.setAttribute("class","form-control input-lg");
                     input.setAttribute("value",getsubStr(words[i]));
                 
-                    downloadText.appendChild(document.createTextNode((i+1)+"\r\n"+changetoTime(true,timewords[i*2])+" --> "+changetoTime(true,timewords[i*2+1])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"));
+/*                    downloadText.appendChild(document.createTextNode((i+1)+"\r\n"+changetoTime(true,timewords[i*2])+" --> "+changetoTime(true,timewords[i*2+1])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"));  */
+
+                    downloadText.appendChild(document.createTextNode(changetoTime(down,timewords[i*2])+":\r\n"+getsubStr(words[i])+"\r\n")); 
+
+/*                     downloadText.appendChild(changetoTime(true,timewords[i*2])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"); 
+*/
                     text=downloadText.value;
                     $("#downloadlink").click(function(){
-                        //if(firsttime==true){
-                        if(firsttime % 2 == 0){
+                    /*    if(firsttime==true){
                             download(downloadName.value,text);
-                            //firsttime=false;
-                            firsttime+=1;
-                        }
+                            firsttime=false;
+                        } */
+                         download(downloadName.value,text);
                     });
                     document.getElementById("div").appendChild(label0); 
                     document.getElementById("div").appendChild(document.createElement("br"));
@@ -708,8 +740,17 @@ function changetoTime(type,timeCount){
         hour=Math.floor(timeCount/1000/60/60); 
         timeString=paddingLeft(hour+"",2)+":"+paddingLeft(minute+"",2)+":"+paddingLeft(second+"",2)+","+paddingLeft(millsec+"",3);
         return timeString;
-    
-    }else{
+        }else if(type==down){
+
+        second=Math.floor(timeCount/1000%60);
+        minute=Math.floor(timeCount/1000/60%60);
+        hour=Math.floor(timeCount/1000/60/60);
+        timeString=paddingLeft(hour+"",2)+":"+paddingLeft(minute+"",2)+":"+paddingLeft(second+"",2);
+        return timeString;
+
+   
+
+ }else{
         millsec=Math.floor(timeCount%1000+Math.random()*100);
         second=Math.floor(timeCount/1000%60);
         minute=Math.floor(timeCount/1000/60); 
