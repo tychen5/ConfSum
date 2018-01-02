@@ -622,7 +622,7 @@ if(false){
                         // download(downloadName.value,text);
                            firsttime=false;}
                     });
-                //$("#downloadlink").removeEventListener();
+                
             });
         });
     }
@@ -633,7 +633,7 @@ if(false){
     savebtn.addEventListener("click",savesub);
     document.getElementById("div").appendChild(savebtn);
     document.getElementById("div").appendChild(document.createElement("br"));*/
-    
+    $("#downloadlink").removeEventListener('click',null);
 }
 
 /*function downloadSub(){
