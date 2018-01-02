@@ -251,26 +251,27 @@ function onresult(event){
        以下為Listener的各類method            
                                     */
 function enterRoom(){
-    
-        roomNumber=$("#RoomNumber_Enter").value;
-        console.log(roomNumber);
-        $("#record").show("slow");
-        $("#recordchat").show("slow");
-        $("#textarea").show("slow");
-        $("#textoutbound").show("slow");
-        controlSetting();        
-        startrecord();
-   
+    firebase.database().ref('test/Subtitle/'+roomNumber).off();   
+    if($("#RoomNumber_Enter").value!=""){
+            roomNumber=$("#RoomNumber_Enter").value;
+            console.log(roomNumber);
+            $("#record").show("slow");
+            $("#recordchat").show("slow");
+            $("#textarea").show("slow");
+            $("#textoutbound").show("slow");
+            controlSetting();        
+            startrecord();
+        }
 }
 function startrecord(event){
-    if(!recognizing&&checkTitle()){
+    
         recognition.start();
         interval=setInterval(function(){
             timeCount++;
             timelabel.innerHTML= changetoTime(false,timeCount*100);
         },100);
         
-    }
+    
     readSubtitle();
 }
 function readSubtitle(){//讀取所有字幕
