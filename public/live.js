@@ -637,7 +637,7 @@ function showsub(){
 }
 function downloadSub(){
     while (downloadText.hasChildNodes()) {   
-        list.removeChild(downloadText.firstChild);
+        downloadText.removeChild(downloadText.firstChild);
     }
     var firsttime=true;
     var d_text="";
