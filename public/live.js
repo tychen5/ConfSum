@@ -21,6 +21,7 @@ var showSubtitle,saveSubtitle,plus,minus;
 var set_meeting_btn;
 //Download Page Element
 var downloadName,downloadText;
+var firsttime=true;
 //Content Bar item
 var BasicSetting,Remodify;
 var roomNumber;
@@ -545,7 +546,7 @@ if(false){
         $("#plusTime").show();
         $("#minusTime").show();
         var text="";
-        var firsttime=true;
+        //var firsttime=true;
         subRef = firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/Subtitle'); //這邊可要改~~~
         timeRef=firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/StartEndTime'); //不然會抓不到字幕QQ
     
@@ -588,14 +589,7 @@ if(false){
 /*                     downloadText.appendChild(changetoTime(true,timewords[i*2])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"); 
 */
                     text=downloadText.value;
-                    $("#downloadlink").click(function(){
-                        if(firsttime==false){
-                            download(downloadName.value,text);
-                            firsttime=true;
-                        }else{ 
-                        // download(downloadName.value,text);
-                           firsttime=false;}
-                    });
+                    
                     document.getElementById("div").appendChild(label0); 
                     document.getElementById("div").appendChild(document.createElement("br"));
                     document.getElementById("div").appendChild(label1); 
@@ -615,6 +609,14 @@ if(false){
     document.getElementById("div").appendChild(document.createElement("br"));*/
     
 }
+function downloadSub(){
+                        if(firsttime==false){
+                            download(downloadName.value,downloadText.value);
+                            firsttime=true;
+                        }else{ 
+                        // download(downloadName.value,text);
+                           firsttime=false;}
+         }
 function download(filename,text) {
     var element = document.createElement('a');
     element.setAttribute('href', "data:text/plain;charset=utf-8," + encodeURIComponent(text));
