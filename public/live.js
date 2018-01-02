@@ -81,7 +81,7 @@ function checkAuth(){
         if (user) {
             $("#multiLinguoBTN_en").hide();
             $("#multiLinguoBTN").hide();
-            $("#BasicSetting").trigger( "click" );
+            
             console.log("登入成功");
             return true;
             // User is signed in.
@@ -249,6 +249,13 @@ function onresult(event){
 /*
        以下為Listener的各類method            
                                     */
+function enterRoom(){
+    if(checkAuth()){
+        roomNumber=$("#RoomNumber_Enter").value;
+        controlSetting();
+        startrecord();
+    }
+}
 function startrecord(event){
     if(!recognizing&&checkTitle()){
         recognition.start();
@@ -335,8 +342,9 @@ function GoogleSignin(){
       var credential = error.credential;
       // ...
     });
-    checkAuth();
-
+    if(checkAuth()){
+        $("#BasicSetting").trigger( "click" );
+    }
 
 }
 
@@ -367,7 +375,10 @@ function FBSignin(){
   var credential = error.credential;
   // ...
 });
-checkAuth();
+if(checkAuth()){
+    $("#BasicSetting").trigger( "click" );
+}
+
 
 }
 function SignInWithMail(){ 
@@ -383,8 +394,10 @@ function SignInWithMail(){
   }
   console.log(error);
   });
-  makeUser();
-  checkAuth();
+  makeUser();    
+  if(checkAuth()){
+      $("#BasicSetting").trigger( "click" );
+  }
   //final_id=biguser_name;
   final_password=password.value;
   greet.innerHTML="Hello，"+biguser_name;
