@@ -594,7 +594,18 @@ if(false){
                     //downloadText.appendChild(document.createTextNode((i+1)+"\r\n"+changetoTime(true,timewords[i*2])+" --> "+changetoTime(true,timewords[i*2+1])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"));
                     
                     downloadText.appendChild(document.createTextNode(changetoTime(true,timewords[i*2])+":\r\n"+getsubStr(words[i])+"\r\n")); 
-
+                    $("#downloadlink").click(function(){
+                    //if(firsttime==true){
+                        if(firsttime==false){
+                            download(downloadName.value,text);
+                            //firsttime=false;
+                        } 
+                         //download(downloadName.value,text);
+                            //firsttime=true;
+                        else{ 
+                        // download(downloadName.value,text);
+                           firsttime=false;}
+                    });
                     //downloadText.appendChild(changetoTime(true,timewords[i*2])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"); 
 
                     text=downloadText.value;
@@ -620,7 +631,7 @@ if(false){
     
 }
 
-function downloadSub(){
+/*function downloadSub(){
     var firsttime=true;
     var d_text="";
     var timeRef=firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/StartEndTime');;
@@ -685,7 +696,7 @@ function downloadSub(){
         
       //  firsttime=false;}
          
-}
+}*/
 function download(filename,text) {
     var element = document.createElement('a');
     element.setAttribute('href', "data:text/plain;charset=utf-8," + encodeURIComponent(text));
