@@ -222,7 +222,7 @@ function onresult(event){
             updateSubtitle(biguser_name,final_title,subArray);
             var postData = {
                             name:firebase.auth().currentUser.displayName,
-                            id:biguser_uid,
+                            id:biguser_uid,                            
                             title:final_title,
                             time:timing,
                             record_perSentence:subArray[subArray.length-1]
@@ -253,7 +253,11 @@ function enterRoom(){
     
         roomNumber=$("#RoomNumber_Enter").value;
         console.log(roomNumber);
-        controlSetting();
+        $("#record").show("slow");
+        $("#recordchat").show("slow");
+        $("#textarea").show("slow");
+        $("#textoutbound").show("slow");
+        controlSetting();        
         startrecord();
    
 }
