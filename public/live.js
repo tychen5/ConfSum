@@ -26,7 +26,8 @@ var BasicSetting,Remodify;
 var roomNumber;
 //recognizer Object
 var recognition, recognizing = false;
-var subArray,timeArray;
+var timeArray;
+var subArray=new Array();
 var interval,timeCount=0,firstword=true,startTime,endTime;
 var subRef,wordNum,allsubref,previoussubref;
 var database,ms;
@@ -187,7 +188,7 @@ function elementhide(){
                         
 function onstart(){
     recognizing = true;
-    subArray=new Array();
+    //subArray=new Array();
     timeArray=new Array();
 }
 function onend(){
@@ -231,13 +232,12 @@ function onresult(event){
 
             firebase.database().ref('test/Subtitle/'+roomNumber).push(postData);
             firstword=true;
-            } 
-            else { 
+        }else { 
                 if(firstword){
-                startTime=timeCount*100+Math.floor(Math.random()*100);
-                timeArray.push(startTime);
-                updateTime(biguser_name,final_title,timeArray);
-                firstword=false;
+                    startTime=timeCount*100+Math.floor(Math.random()*100);
+                    timeArray.push(startTime);
+                    updateTime(biguser_name,final_title,timeArray);
+                    firstword=false;
                 }
             interim_transcript = event.results[i][0].transcript;
             inputText.value=interim_transcript;
@@ -399,9 +399,9 @@ function SignInWithMail(){
   console.log(error);
   });
   makeUser();    
-  if(checkAuth()){
-      $("#BasicSetting").trigger( "click" );
-  }
+  checkAuth();
+      
+  
   //final_id=biguser_name;
   final_password=password.value;
   greet.innerHTML="Hello，"+biguser_name;
