@@ -13,7 +13,7 @@ var email_address,password;
 var biguser;
 //Login Page Element
 window.onload=function(){
-    window.location.assign('Setmeeting.html';
+    //window.location.assign('loginPage.html');
     buildElement();
     ms = new Date().getTime();      
     buildListener();
