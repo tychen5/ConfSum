@@ -255,7 +255,7 @@ function enterRoom(){
     firebase.database().ref('test/Subtitle/'+roomNumber).off();   
     if($("#RoomNumber_Enter").value!=""){
             final_title=$("#RoomNumber_Enter").value.toString();
-            roomNumber=$("#RoomNumber_Enter").value.toString();
+            roomNumber=$("#RoomNumber_Enter").value;
             console.log(roomNumber);
             $("#record").show("slow");
             $("#recordchat").show("slow");
@@ -544,7 +544,8 @@ function showsub(){
 if(false){
         alert("尚未登入請重新登入")
     }
-    else{    
+    else{
+        downloadText.remove();
         $("#showSubtitle").hide();
         $("#saveSubtitle").show();
         $("#plusTime").show();
