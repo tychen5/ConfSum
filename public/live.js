@@ -609,7 +609,7 @@ if(false){
                     //downloadText.appendChild(changetoTime(true,timewords[i*2])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"); 
 
                     text=downloadText.value;
-                    console.log("這是text:"+text);
+                    console.log("這是text:"+text+"End");
                     
                     document.getElementById("div").appendChild(label0); 
                     document.getElementById("div").appendChild(document.createElement("br"));
