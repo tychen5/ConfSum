@@ -81,7 +81,7 @@ function checkAuth(){
         if (user) {
             $("#multiLinguoBTN_en").hide();
             $("#multiLinguoBTN").hide();
-            
+            $("#BasicSetting").trigger( "click" );
             console.log("登入成功");
             return true;
             // User is signed in.
@@ -250,11 +250,12 @@ function onresult(event){
        以下為Listener的各類method            
                                     */
 function enterRoom(){
-    if(checkAuth()){
+    
         roomNumber=$("#RoomNumber_Enter").value;
+        console.log(roomNumber);
         controlSetting();
         startrecord();
-    }
+   
 }
 function startrecord(event){
     if(!recognizing&&checkTitle()){
@@ -342,9 +343,9 @@ function GoogleSignin(){
       var credential = error.credential;
       // ...
     });
-    if(checkAuth()){
-        $("#BasicSetting").trigger( "click" );
-    }
+    checkAuth()
+    
+    
 
 }
 
@@ -375,10 +376,7 @@ function FBSignin(){
   var credential = error.credential;
   // ...
 });
-if(checkAuth()){
-    $("#BasicSetting").trigger( "click" );
-}
-
+checkAuth();
 
 }
 function SignInWithMail(){ 
