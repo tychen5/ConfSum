@@ -546,7 +546,7 @@ if(false){
         alert("尚未登入請重新登入")
     }
     else{
-        downloadText.remove();
+        //downloadText.remove();
         $("#showSubtitle").hide();
         $("#saveSubtitle").show();
         $("#plusTime").show();
@@ -554,7 +554,7 @@ if(false){
         var text="";
         //var firsttime=true;
         subRef = firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/Subtitle'); //這邊可要改~~~
-        timeRef=firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/StartEndTime'); //不然會抓不到字幕QQ
+        var timeRef=firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/StartEndTime'); //不然會抓不到字幕QQ
     
         subRef.once("value").then(function(data){
             //document.getElementById("content").innerHTML=JSON.stringify(data.val());
@@ -588,12 +588,12 @@ if(false){
                     input.setAttribute("class","form-control input-lg");
                     input.setAttribute("value",getsubStr(words[i]));
                 
-/*                    downloadText.appendChild(document.createTextNode((i+1)+"\r\n"+changetoTime(true,timewords[i*2])+" --> "+changetoTime(true,timewords[i*2+1])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"));  */
-
+                    //downloadText.appendChild(document.createTextNode((i+1)+"\r\n"+changetoTime(true,timewords[i*2])+" --> "+changetoTime(true,timewords[i*2+1])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"));
+                    
                     downloadText.appendChild(document.createTextNode(changetoTime(true,timewords[i*2])+":\r\n"+getsubStr(words[i])+"\r\n")); 
 
-/*                     downloadText.appendChild(changetoTime(true,timewords[i*2])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"); 
-*/
+                    //downloadText.appendChild(changetoTime(true,timewords[i*2])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"); 
+
                     text=downloadText.value;
                     
                     document.getElementById("div").appendChild(label0); 
@@ -615,15 +615,71 @@ if(false){
     document.getElementById("div").appendChild(document.createElement("br"));*/
     
 }
+
 function downloadSub(){
-                        if(firsttime==false){
-                            //downloadName.value="Note-"+final_title+".txt"
-                            download("Note-"+final_title+".txt",downloadText.value);
-                            firsttime=true;
-                        }else{ 
-                        // download(downloadName.value,text);
-                           firsttime=false;}
-         }
+    var d_text;
+    subRef.once("value").then(function(data){
+            //document.getElementById("content").innerHTML=JSON.stringify(data.val());
+            wordNum=data.numChildren();
+            //alert(data.val());
+            var string=JSON.stringify(data.val());
+            var words=getsubStr(string).split(",");
+            timeRef.once("value").then(function(snapshot){
+                //alert(words);
+                //alert(snapshot.val());
+                var timestring=JSON.stringify(snapshot.val());
+                var timewords=getsubStr(timestring).split(",");
+                for(var i=0;i<words.length;i++){
+                    var label0=document.createElement("label");
+                    label0.innerHTML=i+1;
+                    label0.setAttribute("name","label");
+                
+                    var label1=document.createElement("label");
+                    label1.innerHTML=changetoTime(true,timewords[i*2]);
+                    label1.setAttribute("class","btn");
+                    label1.setAttribute("name","label");
+                
+                    var label2=document.createElement("label");
+                    label2.innerHTML=changetoTime(true,timewords[i*2+1]);
+                    label2.setAttribute("class","btn");
+                    label2.setAttribute("name","label");
+                
+                    var input=document.createElement("input");
+                    input.setAttribute("id", i);
+                    input.setAttribute("type", "text");
+                    input.setAttribute("class","form-control input-lg");
+                    input.setAttribute("value",getsubStr(words[i]));
+                
+                    //downloadText.appendChild(document.createTextNode((i+1)+"\r\n"+changetoTime(true,timewords[i*2])+" --> "+changetoTime(true,timewords[i*2+1])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"));
+                    
+                    downloadText.appendChild(document.createTextNode(changetoTime(true,timewords[i*2])+":\r\n"+getsubStr(words[i])+"\r\n")); 
+
+                    //downloadText.appendChild(changetoTime(true,timewords[i*2])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"); 
+
+                    d_text=downloadText.value;
+                    
+                    document.getElementById("div").appendChild(label0); 
+                    document.getElementById("div").appendChild(document.createElement("br"));
+                    document.getElementById("div").appendChild(label1); 
+                    document.getElementById("div").appendChild(label2); 
+                    document.getElementById("div").appendChild(input); 
+                    document.getElementById("div").appendChild(document.createElement("br"));
+            }   
+            });
+        });
+                        
+    if(firsttime==false){
+    //downloadName.value="Note-"+final_title+".txt"
+        download("Note-"+final_title+".txt",d_text);
+        firsttime=true;
+    
+    }else{ 
+    
+        // download(downloadName.value,text);
+        
+        firsttime=false;}
+         
+}
 function download(filename,text) {
     var element = document.createElement('a');
     element.setAttribute('href', "data:text/plain;charset=utf-8," + encodeURIComponent(text));
