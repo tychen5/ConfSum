@@ -589,11 +589,12 @@ if(false){
 */
                     text=downloadText.value;
                     $("#downloadlink").click(function(){
-                    /*    if(firsttime==true){
+                        if(firsttime==false){
                             download(downloadName.value,text);
-                            firsttime=false;
-                        } */
-                         download(downloadName.value,text);
+                            firsttime=true;
+                        }else{ 
+                        // download(downloadName.value,text);
+                           firsttime=false;}
                     });
                     document.getElementById("div").appendChild(label0); 
                     document.getElementById("div").appendChild(document.createElement("br"));
