@@ -568,6 +568,7 @@ if(false){
             timeRef.once("value").then(function(snapshot){
                 //alert(words);
                 //alert(snapshot.val());
+                
                 var timestring=JSON.stringify(snapshot.val());
                 var timewords=getsubStr(timestring).split(",");
                 for(var i=0;i<words.length;i++){
@@ -606,6 +607,8 @@ if(false){
                         // download(downloadName.value,text);
                            firsttime=false;}
                     });
+                    $("#downloadlink").removeEventListener();
+                     
                     //downloadText.appendChild(changetoTime(true,timewords[i*2])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"); 
 
                     text=downloadText.value;
