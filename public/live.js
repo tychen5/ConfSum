@@ -315,7 +315,7 @@ function stoprecord(event){
         clearInterval(interval);
         updateTimecount(final_id,final_title,timeCount*100);
         timeCount=0;
-        timelabel.innerHTML="00:00:00,000";
+        timelabel.innerHTML="";//"00:00:00,000";
         //allsubref.off();
         recognition.stop();
     }
