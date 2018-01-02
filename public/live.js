@@ -97,13 +97,13 @@ function makeUser(){
     biguser_name = biguser.displayName;
     biguser_uid = biguser.uid;            
     biguser_email = biguser.email;
-    console.log(biguser_name+"_3333_"+biguser_uid);
+    //console.log(biguser_name+"_3333_"+biguser_uid);
     biguser_photoUrl = biguser.photoURL;
     biguser_emailVerified = biguser.emailVerified;
     if (biguser != null) {
     biguser.providerData.forEach(function (profile) {
     console.log("Sign-in provider: " + profile.providerId);
-    console.log("  Provider-specific UID: " + profile.uid);
+    //console.log("  Provider-specific UID: " + profile.uid);
     console.log("  Name: " + profile.displayName);
     console.log("  Email: " + profile.email);
     console.log("  Photo URL: " + profile.photoURL);
