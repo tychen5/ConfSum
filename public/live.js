@@ -636,9 +636,10 @@ function showsub(){
     
 }
 function downloadSub(){
+    /*
     while (downloadText.hasChildNodes()) {   
         downloadText.removeChild(downloadText.firstChild);
-    }
+    }*/
     var firsttime=true;
     var d_text="";
     var d_timeRef = firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/StartEndTime');
@@ -677,11 +678,11 @@ function downloadSub(){
                 
                     //downloadText.appendChild(document.createTextNode((i+1)+"\r\n"+changetoTime(true,timewords[i*2])+" --> "+changetoTime(true,timewords[i*2+1])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"));
                     
-                    downloadText.appendChild(document.createTextNode(changetoTime(true,timewords[i*2])+":\r\n"+getsubStr(words[i])+"\r\n")); 
+                    d_text+=changetoTime(true,timewords[i*2])+":\r\n"+getsubStr(words[i])+"\r\n"; 
 
                     //downloadText.appendChild(changetoTime(true,timewords[i*2])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"); 
 
-                    d_text=downloadText.value;
+                    
                     
                     document.getElementById("div").appendChild(label0); 
                     document.getElementById("div").appendChild(document.createElement("br"));
