@@ -636,6 +636,9 @@ function showsub(){
     
 }
 function downloadSub(){
+    while (downloadText.hasChildNodes()) {   
+        list.removeChild(downloadText.firstChild);
+    }
     var firsttime=true;
     var d_text="";
     var d_timeRef = firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/StartEndTime');
