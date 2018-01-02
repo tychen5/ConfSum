@@ -595,19 +595,8 @@ if(false){
                     //downloadText.appendChild(document.createTextNode((i+1)+"\r\n"+changetoTime(true,timewords[i*2])+" --> "+changetoTime(true,timewords[i*2+1])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"));
                     
                     downloadText.appendChild(document.createTextNode(changetoTime(true,timewords[i*2])+":\r\n"+getsubStr(words[i])+"\r\n")); 
-                    $("#downloadlink").click(function(){
-                    //if(firsttime==true){
-                        if(firsttime==false){
-                            download(downloadName.value,text);
-                            //firsttime=false;
-                        } 
-                         //download(downloadName.value,text);
-                            //firsttime=true;
-                        else{ 
-                        // download(downloadName.value,text);
-                           firsttime=false;}
-                    });
-                    $("#downloadlink").removeEventListener();
+                    
+                    
                      
                     //downloadText.appendChild(changetoTime(true,timewords[i*2])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"); 
 
@@ -620,7 +609,20 @@ if(false){
                     document.getElementById("div").appendChild(label2); 
                     document.getElementById("div").appendChild(input); 
                     document.getElementById("div").appendChild(document.createElement("br"));
-            }   
+            }
+                $("#downloadlink").click(function(){
+                    //if(firsttime==true){
+                        if(firsttime==false){
+                            download(downloadName.value,text);
+                            //firsttime=false;
+                        } 
+                         //download(downloadName.value,text);
+                            //firsttime=true;
+                        else{ 
+                        // download(downloadName.value,text);
+                           firsttime=false;}
+                    });
+                //$("#downloadlink").removeEventListener();
             });
         });
     }
