@@ -21,7 +21,7 @@ var showSubtitle,saveSubtitle,plus,minus;
 var set_meeting_btn;
 //Download Page Element
 var downloadName,downloadText;
-var firsttime=true;
+
 //Content Bar item
 var BasicSetting,Remodify;
 var roomNumber;
@@ -110,6 +110,7 @@ function makeUser(){
     console.log("  Name: " + profile.displayName);
     console.log("  Email: " + profile.email);
     console.log("  Photo URL: " + profile.photoURL);
+    
   });
 }
 }
@@ -258,6 +259,7 @@ function enterRoom(){
             final_title=RoomNumber_Enter.value;
             roomNumber=RoomNumber_Enter.value;
             console.log(roomNumber);
+            subRef = firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/Subtitle');
             $("#record").show("slow");
             $("#recordchat").show("slow");
             $("#textarea").show("slow");
@@ -496,6 +498,7 @@ function settingConfirm(){
         if(title.value!=""){
             final_title=title.value;
         }
+        subRef = firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/Subtitle');
         downloadName.value=ddate+"Note-"+final_title+".txt";
         recognition.lang=lang.value;
         $("#record").show("slow");
@@ -552,8 +555,8 @@ if(false){
         $("#plusTime").show();
         $("#minusTime").show();
         var text="";
-        //var firsttime=true;
-        subRef = firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/Subtitle'); //這邊可要改~~~
+        var firsttime=true;
+        //subRef = firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/Subtitle'); //這邊可要改~~~
         var timeRef=firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/StartEndTime'); //不然會抓不到字幕QQ
     
         subRef.once("value").then(function(data){
@@ -618,7 +621,9 @@ if(false){
 }
 
 function downloadSub(){
+    var firsttime=true;
     var d_text="";
+    var timeRef;
     subRef.once("value").then(function(data){
             //document.getElementById("content").innerHTML=JSON.stringify(data.val());
             wordNum=data.numChildren();
@@ -669,16 +674,16 @@ function downloadSub(){
             });
         });
                         
-    if(firsttime==false){
+    //if(firsttime==false){
     //downloadName.value="Note-"+final_title+".txt"
         download("Note-"+final_title+".txt",d_text);
-        firsttime=true;
+       // firsttime=true;
     
-    }else{ 
+    //}else{ 
     
         // download(downloadName.value,text);
         
-        firsttime=false;}
+      //  firsttime=false;}
          
 }
 function download(filename,text) {
