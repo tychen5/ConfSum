@@ -545,10 +545,8 @@ function controlSetting(){
 }
 function showsub(){
    // if(checkAuth()!=true){
-if(false){
-        alert("尚未登入請重新登入")
-    }
-    else{
+
+    
         //downloadText.remove();
         $("#showSubtitle").hide();
         $("#saveSubtitle").show();
@@ -602,6 +600,7 @@ if(false){
 
                     text=downloadText.value;
                     console.log("這是text:"+text+"End");
+                    console.log("這是text:"+text[text.length-1]+"End");
                     
                     document.getElementById("div").appendChild(label0); 
                     document.getElementById("div").appendChild(document.createElement("br"));
@@ -610,7 +609,10 @@ if(false){
                     document.getElementById("div").appendChild(input); 
                     document.getElementById("div").appendChild(document.createElement("br"));
             }
-                $("#downloadlink").click(function(){
+                
+                
+            });
+            $("#downloadlink").click(function(){
                     //if(firsttime==true){
                         if(firsttime==false){
                             download(downloadName.value,text);
@@ -622,10 +624,8 @@ if(false){
                         // download(downloadName.value,text);
                            firsttime=false;}
                     });
-                
-            });
         });
-    }
+    
    
     /* var savebtn=document.createElement("button");
     savebtn.setAttribute("id","saveSubtitle");
