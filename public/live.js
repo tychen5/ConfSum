@@ -563,7 +563,9 @@ if(false){
                     input.setAttribute("class","form-control input-lg");
                     input.setAttribute("value",getsubStr(words[i]));
                 
-                    downloadText.appendChild(document.createTextNode((i+1)+"\r\n"+changetoTime(true,timewords[i*2])+" --> "+changetoTime(true,timewords[i*2+1])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"));  
+/*                    downloadText.appendChild(document.createTextNode((i+1)+"\r\n"+changetoTime(true,timewords[i*2])+" --> "+changetoTime(true,timewords[i*2+1])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"));  */
+
+                    downloadText.appendChild(document.createTextNode(changetoTime(true,timewords[i*2])+":\r\n"+getsubStr(words[i])+"\r\n")); 
 
 /*                     downloadText.appendChild(changetoTime(true,timewords[i*2])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"); 
 */
