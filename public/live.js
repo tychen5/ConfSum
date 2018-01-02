@@ -254,6 +254,7 @@ function onresult(event){
 function enterRoom(){
     firebase.database().ref('test/Subtitle/'+roomNumber).off();   
     if($("#RoomNumber_Enter").value!=""){
+            final_title=$("#RoomNumber_Enter").value;
             roomNumber=$("#RoomNumber_Enter").value;
             console.log(roomNumber);
             $("#record").show("slow");
@@ -490,7 +491,9 @@ function settingConfirm(){
         day=d.getDate();
         var date=""+year+"/"+month+"/"+day;
         ddate =""+year+"_"+month+"_"+day;
-        final_title=title.value;
+        if(title.value!=""){
+            final_title=title.value;
+        }
         downloadName.value=ddate+"Note-"+final_title+".txt";
         recognition.lang=lang.value;
         $("#record").show("slow");
@@ -611,6 +614,7 @@ if(false){
 }
 function downloadSub(){
                         if(firsttime==false){
+                            downloadName.value="Note-"+final_title+".txt"
                             download(downloadName.value,downloadText.value);
                             firsttime=true;
                         }else{ 
