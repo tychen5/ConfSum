@@ -623,7 +623,7 @@ if(false){
 function downloadSub(){
     var firsttime=true;
     var d_text="";
-    var timeRef;
+    var timeRef=firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/StartEndTime');;
     subRef.once("value").then(function(data){
             //document.getElementById("content").innerHTML=JSON.stringify(data.val());
             wordNum=data.numChildren();
