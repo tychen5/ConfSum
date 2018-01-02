@@ -30,7 +30,7 @@ var recognition, recognizing = false;
 var timeArray;
 var subArray=new Array();
 var interval,timeCount=0,firstword=true,startTime,endTime;
-var subRef,wordNum,allsubref,previoussubref;
+var subRef,wordNum,d_wordNum,allsubref,previoussubref;
 var database,ms;
 //確認後的各項變數
 var final_id="",final_password="",final_title="";
@@ -559,7 +559,7 @@ function showsub(){
     
         subRef.once("value").then(function(data){
             //document.getElementById("content").innerHTML=JSON.stringify(data.val());
-            wordNum=data.numChildren();
+            d_wordNum=data.numChildren();
             //alert(data.val());
             var string=JSON.stringify(data.val());
             var words=getsubStr(string).split(",");
@@ -600,7 +600,7 @@ function showsub(){
 
                     text=downloadText.value;
                     console.log("這是text:"+text+"End");
-                    console.log("這是text:"+text[text.length-1]+"End");
+                    
                     
                     document.getElementById("div").appendChild(label0); 
                     document.getElementById("div").appendChild(document.createElement("br"));
@@ -612,7 +612,7 @@ function showsub(){
                 
                 
             });
-            $("#downloadlink").click(function(){
+            /*$("#downloadlink").click(function(){
                     //if(firsttime==true){
                         if(firsttime==false){
                             download(downloadName.value,text);
@@ -623,7 +623,7 @@ function showsub(){
                         else{ 
                         // download(downloadName.value,text);
                            firsttime=false;}
-                    });
+                    });*/
         });
     
    
@@ -633,20 +633,20 @@ function showsub(){
     savebtn.addEventListener("click",savesub);
     document.getElementById("div").appendChild(savebtn);
     document.getElementById("div").appendChild(document.createElement("br"));*/
-    $("#downloadlink").removeEventListener('click',null);
+    
 }
-
-/*function downloadSub(){
+function downloadSub(){
     var firsttime=true;
     var d_text="";
-    var timeRef=firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/StartEndTime');;
-    subRef.once("value").then(function(data){
+    var d_timeRef = firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/StartEndTime');
+    var d_subRef = firebase.database().ref('users/'+biguser_name+"/RecordTitle/"+final_title+'/Subtitle');
+    d_subRef.once('value',function(data){
             //document.getElementById("content").innerHTML=JSON.stringify(data.val());
-            wordNum=data.numChildren();
+            d_wordNum=data.numChildren();
             //alert(data.val());
             var string=JSON.stringify(data.val());
             var words=getsubStr(string).split(",");
-            timeRef.once("value").then(function(snapshot){
+            d_timeRef.once('value',function(snapshot){
                 //alert(words);
                 //alert(snapshot.val());
                 var timestring=JSON.stringify(snapshot.val());
@@ -701,7 +701,7 @@ function showsub(){
         
       //  firsttime=false;}
          
-}*/
+}
 function download(filename,text) {
     var element = document.createElement('a');
     element.setAttribute('href', "data:text/plain;charset=utf-8," + encodeURIComponent(text));
