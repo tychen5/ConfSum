@@ -254,7 +254,7 @@ function startrecord(event){
         recognition.start();
         interval=setInterval(function(){
             timeCount++;
-            timelabel.innerHTML=changetoTime(false,timeCount*100);
+            timelabel.innerHTML= changetoTime(false,timeCount*100);
         },100);
         
     }
