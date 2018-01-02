@@ -277,6 +277,7 @@ function startrecord(event){
     readSubtitle();
 }
 function readSubtitle(){//讀取所有字幕
+    firebase.database().ref('test/Subtitle/'+roomNumber).off();
     var len;
     var text;
     var string;    
@@ -312,7 +313,7 @@ function stoprecord(event){
         updateTimecount(final_id,final_title,timeCount*100);
         timeCount=0;
         timelabel.innerHTML="00:00:00,000";
-        allsubref.off();
+        //allsubref.off();
         recognition.stop();
     }
 }
