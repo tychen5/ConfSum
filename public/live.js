@@ -595,6 +595,7 @@ if(false){
                     //downloadText.appendChild(changetoTime(true,timewords[i*2])+"\r\n"+getsubStr(words[i])+"\r\n\r\n"); 
 
                     text=downloadText.value;
+                    console.log("這是text:"+text);
                     
                     document.getElementById("div").appendChild(label0); 
                     document.getElementById("div").appendChild(document.createElement("br"));
@@ -617,7 +618,7 @@ if(false){
 }
 
 function downloadSub(){
-    var d_text;
+    var d_text="";
     subRef.once("value").then(function(data){
             //document.getElementById("content").innerHTML=JSON.stringify(data.val());
             wordNum=data.numChildren();
