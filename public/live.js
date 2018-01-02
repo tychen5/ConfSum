@@ -33,6 +33,7 @@ var database,ms;
 //確認後的各項變數
 var final_id="",final_password="",final_title="";
 var biguser;
+var ddate;
 var biguser_name, biguser_email, biguser_photoUrl, biguser_uid, biguser_emailVerified;
 window.onload=function(){
     
@@ -484,8 +485,9 @@ function settingConfirm(){
         month=d.getMonth()+1;
         day=d.getDate();
         var date=""+year+"/"+month+"/"+day;
+        ddate =""+year+"_"+month+"_"+day;
         final_title=title.value;
-        downloadName.value=biguser_name+"Note_"+final_title+".txt";
+        downloadName.value=ddate+"Note-"+final_title+".txt";
         recognition.lang=lang.value;
         $("#record").show("slow");
         $("#recordchat").show("slow");
