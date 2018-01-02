@@ -127,7 +127,8 @@ function buildElement(){
     greet=document.getElementById("greet");
     mydate=document.getElementById("mydate");
     title=document.getElementById("titleInput");
-    sessionNumber=document.getElementById("roomnumberInput");    
+    sessionNumber=document.getElementById("roomnumberInput");
+    RoomNumber_Enter=document.getElementById("RoomNumber_Enter");
     meetinggoal=document.getElementById("meetinggoalInput");
     lang=document.getElementById("lang");
     confirmSetting=document.getElementById("confirmSetting");
@@ -253,9 +254,9 @@ function onresult(event){
                                     */
 function enterRoom(){
     firebase.database().ref('test/Subtitle/'+roomNumber).off();   
-    if($("#RoomNumber_Enter").value!=""){
-            final_title=$("#RoomNumber_Enter").value;
-            roomNumber=$("#RoomNumber_Enter").value;
+    if(RoomNumber_Enter.value!=""){
+            final_title=RoomNumber_Enter.value;
+            roomNumber=RoomNumber_Enter.value;
             console.log(roomNumber);
             $("#record").show("slow");
             $("#recordchat").show("slow");
