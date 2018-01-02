@@ -254,7 +254,7 @@ function onresult(event){
 function enterRoom(){
     firebase.database().ref('test/Subtitle/'+roomNumber).off();   
     if($("#RoomNumber_Enter").value!=""){
-            final_title=$("#RoomNumber_Enter").value.toString();
+            final_title=$("#RoomNumber_Enter").value;
             roomNumber=$("#RoomNumber_Enter").value;
             console.log(roomNumber);
             $("#record").show("slow");
