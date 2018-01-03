@@ -434,9 +434,10 @@ function confirmNewAccount(){
         else{            
             firebase.auth().createUserWithEmailAndPassword(id.value.toString(), password.value.toString()).catch(function(error) {
                 // Handle Errors here.
-                window.alert("成功創立帳號");
+                //window.alert("成功創立帳號");
                 var errorCode = error.code;
                 var errorMessage = error.message;
+                SignInWithMail();
                 // ...
             });
             
