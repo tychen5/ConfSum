@@ -1,5 +1,6 @@
-# SDM_ConfSum
-SDM final project of conference note and summary
+# ConfSum
+### Project of conference note and summary
+https://sdm-subtitle.firebaseapp.com/
 
 the configuration of firebase:
 
